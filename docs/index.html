@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build With AI — Advanced Topics</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f6f9; color: #222; }
+
+    header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+      color: white;
+      padding: 3.5rem 2rem 2.5rem;
+      text-align: center;
+    }
+    header .site-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      margin-bottom: 0.8rem;
+    }
+    header h1 { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 0.5rem; }
+    header p { opacity: 0.75; font-size: 1.1rem; max-width: 560px; margin: 0 auto; line-height: 1.6; }
+
+    nav { display: flex; justify-content: center; gap: 1rem; background: #16213e; padding: 0.75rem; flex-wrap: wrap; }
+    nav a { color: #e0e0e0; text-decoration: none; font-size: 0.95rem; padding: 0.3rem 0.8rem; border-radius: 4px; transition: background 0.2s; }
+    nav a:hover { background: #0f3460; }
+    .nav-dropdown { position: relative; display: inline-block; }
+    .nav-dropdown > span { color: #e0e0e0; font-size: 0.95rem; padding: 0.3rem 0.8rem; border-radius: 4px; cursor: pointer; user-select: none; display: inline-block; }
+    .nav-dropdown > span:hover { background: #0f3460; }
+    .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #0f3460; border-radius: 4px; min-width: 200px; z-index: 100; padding: 0.3rem 0; }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a { display: block; padding: 0.45rem 1rem; border-radius: 0; white-space: nowrap; }
+    .nav-dropdown-menu a:hover { background: #16213e; }
+
+    main { max-width: 900px; margin: 2.5rem auto; padding: 0 1.5rem; }
+
+    .intro {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+    .intro p { margin-bottom: 0.5rem; }
+    .intro p:last-child { margin-bottom: 0; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #f0f4f8;
+      border: 1px solid #d0d8e4;
+      color: #0f3460;
+      text-decoration: none;
+      padding: 0.4rem 0.9rem;
+      border-radius: 5px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      transition: background 0.2s;
+    }
+    .back-link:hover { background: #e2e8f0; }
+
+    h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; color: #1a1a2e; }
+
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; margin-bottom: 2.5rem; }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.4rem 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+      border-top: 4px solid #0f3460;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+    .card.dashboards  { border-top-color: #059669; }
+    .card.tech-stacks { border-top-color: #7c3aed; }
+    .card .card-icon  { font-size: 2rem; margin-bottom: 0.6rem; }
+    .card h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+    .card p  { font-size: 0.88rem; color: #555; line-height: 1.6; margin: 0; }
+
+    .path-strip {
+      background: #1a1a2e;
+      color: white;
+      border-radius: 10px;
+      padding: 1.3rem 1.8rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .path-strip .path-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; flex-basis: 100%; }
+    .path-step { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+    .path-step .num { background: rgba(255,255,255,0.15); width: 1.5rem; height: 1.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; }
+    .path-arrow { opacity: 0.35; font-size: 0.9rem; }
+
+    footer { text-align: center; padding: 1.5rem; font-size: 0.85rem; color: #888; margin-top: 2rem; }
+    footer a { color: #888; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="site-label">Advanced Topics</div>
+  <h1>Build With AI</h1>
+  <p>Go beyond setup — auth flows, dashboards, and full tech stacks, all built faster with AI.</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <div class="nav-dropdown">
+    <span>Auth &amp; Permissions &#9662;</span>
+    <div class="nav-dropdown-menu">
+      <a href="auth-permissions.html">Overview</a>
+    </div>
+  </div>
+  <div class="nav-dropdown">
+    <span>Dashboards &#9662;</span>
+    <div class="nav-dropdown-menu">
+      <a href="dashboards.html">Overview</a>
+    </div>
+  </div>
+  <div class="nav-dropdown">
+    <span>Tech Stacks &#9662;</span>
+    <div class="nav-dropdown-menu">
+      <a href="tech-stacks.html">Overview</a>
+    </div>
+  </div>
+  <a href="feedback.html">Report a Problem</a>
+  <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">← Back to Basics</a>
+  <a href="https://github.com/jbain-ANDREW/Build-With-AI" target="_blank">GitHub Repo</a>
+</nav>
+
+<main>
+
+  <a href="https://jbain-ANDREW.github.io/Training-Repo/" class="back-link" target="_blank">
+    ← Get the tools first: Training Repo
+  </a>
+
+  <div class="intro">
+    <p>
+      This site picks up where the <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">intro primer</a>
+      leaves off. You should already have VS Code, Python, Git, and at least one AI tool set up.
+      Here you'll use those tools to build real things — authenticated apps, live dashboards,
+      and multi-layer tech stacks.
+    </p>
+    <p>
+      Every section includes working examples and AI prompts so you can generate, understand,
+      and extend code rather than just copy it.
+    </p>
+  </div>
+
+  <div class="path-strip">
+    <span class="path-label">Suggested path</span>
+    <div class="path-step"><span class="num">1</span> Auth &amp; Permissions</div>
+    <span class="path-arrow">→</span>
+    <div class="path-step"><span class="num">2</span> Dashboards</div>
+    <span class="path-arrow">→</span>
+    <div class="path-step"><span class="num">3</span> Tech Stacks</div>
+  </div>
+
+  <h2>Topics</h2>
+  <div class="card-grid">
+    <a href="auth-permissions.html" class="card">
+      <div class="card-icon">🔑</div>
+      <h3>Auth &amp; Permissions</h3>
+      <p>OAuth flows, API keys, Google service accounts, and how to keep credentials out of your code.</p>
+    </a>
+    <a href="dashboards.html" class="card dashboards">
+      <div class="card-icon">📊</div>
+      <h3>Dashboards</h3>
+      <p>Build live dashboards with Google Sheets as a data source, or with HTML/JavaScript charts.</p>
+    </a>
+    <a href="tech-stacks.html" class="card tech-stacks">
+      <div class="card-icon">🧱</div>
+      <h3>Tech Stacks</h3>
+      <p>What tools fit together and why. Frontend, backend, data layer — picking the right combination for your project.</p>
+    </a>
+  </div>
+
+</main>
+
+<footer>
+  <p>Build With AI &mdash; <a href="feedback.html">Report a problem</a> &mdash; <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">Back to intro primer</a></p>
+</footer>
+
+</body>
+</html>

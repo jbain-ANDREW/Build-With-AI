@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Report a Problem | Build With AI</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f6f9; color: #222; }
+    header { background: #1a1a2e; color: white; padding: 2.5rem 2rem; text-align: center; }
+    header h1 { font-size: 2rem; margin-bottom: 0.4rem; }
+    header p { opacity: 0.75; font-size: 1.05rem; }
+    nav { display: flex; justify-content: center; gap: 1rem; background: #16213e; padding: 0.75rem; flex-wrap: wrap; }
+    nav a { color: #e0e0e0; text-decoration: none; font-size: 0.95rem; padding: 0.3rem 0.8rem; border-radius: 4px; transition: background 0.2s; }
+    nav a:hover { background: #0f3460; }
+    .nav-dropdown { position: relative; display: inline-block; }
+    .nav-dropdown > span { color: #e0e0e0; font-size: 0.95rem; padding: 0.3rem 0.8rem; border-radius: 4px; cursor: pointer; user-select: none; display: inline-block; }
+    .nav-dropdown > span:hover { background: #0f3460; }
+    .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #0f3460; border-radius: 4px; min-width: 200px; z-index: 100; padding: 0.3rem 0; }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a { display: block; padding: 0.45rem 1rem; border-radius: 0; white-space: nowrap; }
+    .nav-dropdown-menu a:hover { background: #16213e; }
+    main { max-width: 860px; margin: 2.5rem auto; padding: 0 1.5rem; }
+    section { margin-bottom: 2.5rem; }
+    h2 { font-size: 1.4rem; margin-bottom: 1rem; border-left: 4px solid #0f3460; padding-left: 0.6rem; }
+    p { line-height: 1.7; margin-bottom: 0.6rem; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0; }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.2rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.15s, box-shadow 0.15s;
+      border-top: 3px solid #0f3460;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 3px 10px rgba(0,0,0,0.1); }
+    .card .icon { font-size: 1.6rem; margin-bottom: 0.5rem; }
+    .card h3 { font-size: 0.97rem; margin-bottom: 0.3rem; }
+    .card p { font-size: 0.85rem; color: #555; margin: 0; }
+    footer { text-align: center; padding: 1.5rem; font-size: 0.85rem; color: #888; margin-top: 2rem; }
+    footer a { color: #888; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Report a Problem</h1>
+  <p>Found something broken, confusing, or missing? Let us know via GitHub Issues.</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <div class="nav-dropdown">
+    <span>Auth &amp; Permissions &#9662;</span>
+    <div class="nav-dropdown-menu">
+      <a href="auth-permissions.html">Overview</a>
+    </div>
+  </div>
+  <div class="nav-dropdown">
+    <span>Dashboards &#9662;</span>
+    <div class="nav-dropdown-menu">
+      <a href="dashboards.html">Overview</a>
+    </div>
+  </div>
+  <div class="nav-dropdown">
+    <span>Tech Stacks &#9662;</span>
+    <div class="nav-dropdown-menu">
+      <a href="tech-stacks.html">Overview</a>
+    </div>
+  </div>
+  <a href="feedback.html">Report a Problem</a>
+  <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">← Back to Basics</a>
+  <a href="https://github.com/jbain-ANDREW/Build-With-AI" target="_blank">GitHub Repo</a>
+</nav>
+
+<main>
+  <section>
+    <h2>What kind of problem?</h2>
+    <div class="card-grid">
+      <a class="card" href="https://github.com/jbain-ANDREW/Build-With-AI/issues/new?labels=bug&title=Something+is+broken" target="_blank">
+        <div class="icon">🐛</div>
+        <h3>Something is broken</h3>
+        <p>A link doesn't work, code throws an error, page doesn't load.</p>
+      </a>
+      <a class="card" href="https://github.com/jbain-ANDREW/Build-With-AI/issues/new?labels=confusing&title=This+is+confusing" target="_blank">
+        <div class="icon">😕</div>
+        <h3>This is confusing</h3>
+        <p>Instructions are unclear or a step is missing context.</p>
+      </a>
+      <a class="card" href="https://github.com/jbain-ANDREW/Build-With-AI/issues/new?labels=missing&title=Something+is+missing" target="_blank">
+        <div class="icon">🔍</div>
+        <h3>Something is missing</h3>
+        <p>A topic you expected to find isn't covered yet.</p>
+      </a>
+      <a class="card" href="https://github.com/jbain-ANDREW/Build-With-AI/issues/new?labels=suggestion&title=Suggestion" target="_blank">
+        <div class="icon">💡</div>
+        <h3>Suggestion</h3>
+        <p>An idea for a new example, exercise, or improvement.</p>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Build With AI &mdash; <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">Back to intro primer</a></p>
+</footer>
+
+</body>
+</html>

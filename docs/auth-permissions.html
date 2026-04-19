@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auth &amp; Permissions | Build With AI</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f6f9; color: #222; }
+    header { background: #1a1a2e; color: white; padding: 2.5rem 2rem; text-align: center; }
+    header h1 { font-size: 2rem; margin-bottom: 0.4rem; }
+    header p { opacity: 0.75; font-size: 1.05rem; }
+    nav { display: flex; justify-content: center; gap: 1rem; background: #16213e; padding: 0.75rem; flex-wrap: wrap; }
+    nav a { color: #e0e0e0; text-decoration: none; font-size: 0.95rem; padding: 0.3rem 0.8rem; border-radius: 4px; transition: background 0.2s; }
+    nav a:hover { background: #0f3460; }
+    .nav-dropdown { position: relative; display: inline-block; }
+    .nav-dropdown > span { color: #e0e0e0; font-size: 0.95rem; padding: 0.3rem 0.8rem; border-radius: 4px; cursor: pointer; user-select: none; display: inline-block; }
+    .nav-dropdown > span:hover { background: #0f3460; }
+    .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #0f3460; border-radius: 4px; min-width: 200px; z-index: 100; padding: 0.3rem 0; }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a { display: block; padding: 0.45rem 1rem; border-radius: 0; white-space: nowrap; }
+    .nav-dropdown-menu a:hover { background: #16213e; }
+    main { max-width: 860px; margin: 2.5rem auto; padding: 0 1.5rem; }
+    section { margin-bottom: 2.5rem; }
+    h2 { font-size: 1.4rem; margin-bottom: 1rem; border-left: 4px solid #0f3460; padding-left: 0.6rem; }
+    h3 { font-size: 1.05rem; margin: 1.3rem 0 0.5rem; color: #0f3460; }
+    p { line-height: 1.7; margin-bottom: 0.6rem; }
+    .coming-soon {
+      background: white;
+      border-radius: 10px;
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      margin-top: 1rem;
+    }
+    .coming-soon .icon { font-size: 3rem; margin-bottom: 1rem; }
+    .coming-soon h2 { border: none; padding: 0; font-size: 1.4rem; text-align: center; margin-bottom: 0.6rem; }
+    .coming-soon p { color: #666; max-width: 480px; margin: 0 auto 1.5rem; }
+    .topic-list { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 1rem; }
+    .topic-list li { background: #e8ecf0; border-radius: 20px; padding: 0.3rem 0.9rem; font-size: 0.88rem; color: #444; }
+    .btn { display: inline-block; background: #0f3460; color: white; padding: 0.6rem 1.4rem; border-radius: 5px; text-decoration: none; font-size: 0.93rem; transition: background 0.2s; }
+    .btn:hover { background: #16213e; }
+    footer { text-align: center; padding: 1.5rem; font-size: 0.85rem; color: #888; margin-top: 2rem; }
+    footer a { color: #888; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Auth &amp; Permissions</h1>
+  <p>OAuth flows, API keys, service accounts, and keeping credentials safe</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <div class="nav-dropdown">
+    <span>Auth &amp; Permissions &#9662;</span>
+    <div class="nav-dropdown-menu">
+      <a href="auth-permissions.html">Overview</a>
+    </div>
+  </div>
+  <div class="nav-dropdown">
+    <span>Dashboards &#9662;</span>
+    <div class="nav-dropdown-menu">
+      <a href="dashboards.html">Overview</a>
+    </div>
+  </div>
+  <div class="nav-dropdown">
+    <span>Tech Stacks &#9662;</span>
+    <div class="nav-dropdown-menu">
+      <a href="tech-stacks.html">Overview</a>
+    </div>
+  </div>
+  <a href="feedback.html">Report a Problem</a>
+  <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">← Back to Basics</a>
+  <a href="https://github.com/jbain-ANDREW/Build-With-AI" target="_blank">GitHub Repo</a>
+</nav>
+
+<main>
+  <div class="coming-soon">
+    <div class="icon">🔑</div>
+    <h2>Coming Soon</h2>
+    <p>This section is under development. It will cover the following topics:</p>
+    <ul class="topic-list">
+      <li>OAuth 2.0 flows</li>
+      <li>API keys — safe storage</li>
+      <li>Google service accounts</li>
+      <li>.env files and secrets</li>
+      <li>Scopes and least-privilege</li>
+      <li>AI prompts for auth code</li>
+    </ul>
+    <br>
+    <a href="index.html" class="btn">← Back to Home</a>
+  </div>
+</main>
+
+<footer>
+  <p>Build With AI &mdash; <a href="feedback.html">Report a problem</a> &mdash; <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">Back to intro primer</a></p>
+</footer>
+
+</body>
+</html>
