@@ -66,6 +66,7 @@
     <span>Tech Stacks &#9662;</span>
     <div class="nav-dropdown-menu">
       <a href="tech-stacks.html">Overview</a>
+      <a href="latex-overleaf.html">LaTeX + Overleaf</a>
     </div>
   </div>
   <a href="feedback.html">Suggest or Improve</a>
@@ -74,21 +75,28 @@
 </nav>
 
 <main>
-  <div class="coming-soon">
-    <div class="icon">🧱</div>
-    <h2>Coming Soon</h2>
-    <p>This section is under development. It will cover the following topics:</p>
-    <ul class="topic-list">
-      <li>Frontend vs backend vs data layer</li>
-      <li>GAS-only stack</li>
-      <li>Python + HTML/JS stack</li>
-      <li>When to add a database</li>
-      <li>Choosing for your project type</li>
-      <li>AI prompts for stack decisions</li>
-    </ul>
-    <br>
-    <a href="index.html" class="btn">← Back to Home</a>
-  </div>
+  <section>
+    <p style="margin-bottom:1.5rem;line-height:1.7;">A <em>tech stack</em> is the combination of tools and services that together make a project work. Picking the right stack early saves a lot of rework. Each guide below covers a specific combination — what it does, how to set it up, and how to use Claude effectively within it.</p>
+
+    <div style="background:white;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,0.07);padding:1.4rem 1.8rem;margin-bottom:1.2rem;display:flex;align-items:flex-start;gap:1.2rem;">
+      <div style="font-size:2rem;flex-shrink:0;">📄</div>
+      <div>
+        <div style="font-size:1.1rem;font-weight:600;margin-bottom:0.3rem;"><a href="latex-overleaf.html" style="color:#0f3460;text-decoration:none;">VS Code + LaTeX + Claude + Overleaf</a></div>
+        <p style="color:#555;font-size:0.93rem;line-height:1.6;">Write LaTeX locally in VS Code with AI assistance from Claude Code, sync to Overleaf for collaborator access via the Git bridge or GitHub sync. Full walkthrough: install, configure, connect, and daily workflow.</p>
+        <a href="latex-overleaf.html" style="display:inline-block;margin-top:0.6rem;background:#0f3460;color:white;padding:0.4rem 1rem;border-radius:4px;font-size:0.88rem;text-decoration:none;">Read guide →</a>
+      </div>
+    </div>
+
+    <div style="background:white;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,0.07);padding:1.4rem 1.8rem;opacity:0.6;">
+      <div style="font-size:1.1rem;font-weight:600;margin-bottom:0.3rem;color:#555;">More stacks — coming soon</div>
+      <ul style="margin-left:1.2rem;color:#666;font-size:0.9rem;line-height:1.9;">
+        <li>GAS-only: Sheets + HtmlService + no backend</li>
+        <li>Python + HTML/JS: Flask or FastAPI front-to-back</li>
+        <li>Vercel + Firebase: React frontend + Firestore data</li>
+        <li>When to add a database vs staying spreadsheet-native</li>
+      </ul>
+    </div>
+  </section>
 </main>
 
 <footer>

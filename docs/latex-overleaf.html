@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VS Code + LaTeX + Claude + Overleaf | Build With AI</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f6f9; color: #222; }
+    header { background: #1a1a2e; color: white; padding: 2.5rem 2rem; text-align: center; }
+    header h1 { font-size: 2rem; margin-bottom: 0.4rem; }
+    header p { opacity: 0.75; font-size: 1.05rem; }
+    nav { display: flex; justify-content: center; gap: 1rem; background: #16213e; padding: 0.75rem; flex-wrap: wrap; }
+    nav a { color: #e0e0e0; text-decoration: none; font-size: 0.95rem; padding: 0.3rem 0.8rem; border-radius: 4px; transition: background 0.2s; }
+    nav a:hover { background: #0f3460; }
+    .nav-dropdown { position: relative; display: inline-block; }
+    .nav-dropdown > span { color: #e0e0e0; font-size: 0.95rem; padding: 0.3rem 0.8rem; border-radius: 4px; cursor: pointer; user-select: none; display: inline-block; }
+    .nav-dropdown > span:hover { background: #0f3460; }
+    .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #0f3460; border-radius: 4px; min-width: 220px; z-index: 100; padding: 0.3rem 0; }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a { display: block; padding: 0.45rem 1rem; border-radius: 0; white-space: nowrap; }
+    .nav-dropdown-menu a:hover { background: #16213e; }
+    main { max-width: 860px; margin: 2.5rem auto; padding: 0 1.5rem; }
+    section { margin-bottom: 2.5rem; }
+    h2 { font-size: 1.4rem; margin-bottom: 1rem; border-left: 4px solid #0f3460; padding-left: 0.6rem; }
+    h3 { font-size: 1.05rem; margin: 1.3rem 0 0.5rem; color: #0f3460; }
+    p { line-height: 1.7; margin-bottom: 0.6rem; }
+    ul, ol { margin-left: 1.4rem; margin-bottom: 0.8rem; line-height: 1.8; }
+    li { margin-bottom: 0.2rem; }
+    .card { background: white; border-radius: 10px; padding: 1.5rem 1.8rem; box-shadow: 0 1px 4px rgba(0,0,0,0.07); margin-bottom: 1.5rem; }
+    .step-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+    .step-num { background: #0f3460; color: white; border-radius: 50%; width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.95rem; flex-shrink: 0; }
+    .step-title { font-size: 1.15rem; font-weight: 600; }
+    code { background: #e8ecf0; border-radius: 3px; padding: 0.1em 0.4em; font-family: 'Cascadia Code', 'Consolas', monospace; font-size: 0.88em; color: #1a1a2e; }
+    pre { background: #1a1a2e; color: #e0e0e0; border-radius: 8px; padding: 1.1rem 1.3rem; overflow-x: auto; margin: 0.8rem 0 1rem; font-size: 0.87rem; line-height: 1.6; font-family: 'Cascadia Code', 'Consolas', monospace; }
+    pre .comment { color: #7c9ab5; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+    .pill { border-radius: 20px; padding: 0.3rem 0.9rem; font-size: 0.85rem; font-weight: 500; }
+    .pill-blue  { background: #dbeafe; color: #1e40af; }
+    .pill-green { background: #dcfce7; color: #166534; }
+    .pill-amber { background: #fef3c7; color: #92400e; }
+    .pill-purple { background: #ede9fe; color: #5b21b6; }
+    .callout { border-left: 4px solid #0f3460; background: #f0f4ff; border-radius: 0 8px 8px 0; padding: 0.9rem 1.1rem; margin: 0.8rem 0; font-size: 0.93rem; line-height: 1.65; }
+    .callout.warn { border-color: #d97706; background: #fffbeb; }
+    .callout.tip  { border-color: #16a34a; background: #f0fdf4; }
+    .stack-diagram { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.5rem; margin: 1.2rem 0; font-size: 0.9rem; }
+    .stack-box { background: white; border: 2px solid #0f3460; border-radius: 8px; padding: 0.55rem 1rem; font-weight: 600; color: #0f3460; text-align: center; min-width: 110px; }
+    .stack-arrow { color: #8e8e93; font-size: 1.2rem; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+    .method-badge { display: inline-block; border-radius: 4px; padding: 0.15rem 0.5rem; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-left: 0.4rem; vertical-align: middle; }
+    .badge-primary { background: #0f3460; color: white; }
+    .badge-alt    { background: #e8ecf0; color: #444; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 0.8rem 0 1rem; }
+    th { background: #1a1a2e; color: white; text-align: left; padding: 0.55rem 0.9rem; }
+    td { padding: 0.5rem 0.9rem; border-bottom: 1px solid #e8ecf0; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #f9fafb; }
+    footer { text-align: center; padding: 1.5rem; font-size: 0.85rem; color: #888; margin-top: 2rem; }
+    footer a { color: #888; }
+    .btn { display: inline-block; background: #0f3460; color: white; padding: 0.6rem 1.4rem; border-radius: 5px; text-decoration: none; font-size: 0.93rem; transition: background 0.2s; }
+    .btn:hover { background: #16213e; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>VS Code + LaTeX + Claude + Overleaf</h1>
+  <p>Write LaTeX locally with AI assistance, sync to Overleaf for collaboration</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <div class="nav-dropdown">
+    <span>Auth &amp; Permissions &#9662;</span>
+    <div class="nav-dropdown-menu">
+      <a href="auth-permissions.html">Overview</a>
+    </div>
+  </div>
+  <div class="nav-dropdown">
+    <span>Dashboards &#9662;</span>
+    <div class="nav-dropdown-menu">
+      <a href="dashboards.html">Overview</a>
+    </div>
+  </div>
+  <div class="nav-dropdown">
+    <span>Tech Stacks &#9662;</span>
+    <div class="nav-dropdown-menu">
+      <a href="tech-stacks.html">Overview</a>
+      <a href="latex-overleaf.html">LaTeX + Overleaf</a>
+    </div>
+  </div>
+  <a href="feedback.html">Suggest or Improve</a>
+  <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">← Back to Basics</a>
+  <a href="https://github.com/jbain-ANDREW/Build-With-AI" target="_blank">GitHub Repo</a>
+</nav>
+
+<main>
+
+  <!-- Overview -->
+  <section>
+    <h2>What this stack does</h2>
+    <div class="card">
+      <p>This stack lets you write LaTeX in VS Code with real-time PDF preview and Claude as an AI co-author, while keeping an Overleaf project in sync so collaborators can view and edit in the browser.</p>
+
+      <div class="stack-diagram">
+        <div class="stack-box">VS Code<br><small style="font-weight:400;font-size:0.8em;">editor + preview</small></div>
+        <div class="stack-arrow">&#8644;</div>
+        <div class="stack-box">Git<br><small style="font-weight:400;font-size:0.8em;">version control</small></div>
+        <div class="stack-arrow">&#8644;</div>
+        <div class="stack-box">Overleaf<br><small style="font-weight:400;font-size:0.8em;">cloud + collab</small></div>
+      </div>
+      <div class="stack-diagram" style="margin-top:0;">
+        <div class="stack-box" style="border-color:#5b21b6;color:#5b21b6;">Claude Code<br><small style="font-weight:400;font-size:0.8em;">AI on .tex files</small></div>
+      </div>
+
+      <p style="margin-top:0.8rem;"><strong>You</strong> write and edit locally in VS Code. <strong>Claude Code</strong> edits <code>.tex</code> files directly — fixing errors, rewriting sections, generating tables. A <code>git push</code> syncs everything to Overleaf, where collaborators can edit in the browser. A <code>git pull</code> brings their changes back.</p>
+
+      <div class="pill-row" style="margin-top:1rem;">
+        <span class="pill pill-blue">Academic writing</span>
+        <span class="pill pill-green">Theses &amp; dissertations</span>
+        <span class="pill pill-amber">Conference papers</span>
+        <span class="pill pill-purple">Technical reports</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prerequisites -->
+  <section>
+    <h2>Prerequisites</h2>
+    <div class="card">
+      <table>
+        <thead><tr><th>Tool</th><th>What you need</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>VS Code</strong></td><td>Any recent version</td><td><a href="https://code.visualstudio.com" target="_blank">code.visualstudio.com</a></td></tr>
+          <tr><td><strong>LaTeX distribution</strong></td><td>MiKTeX (Windows), MacTeX (Mac), TeX Live (Linux)</td><td>Provides <code>pdflatex</code>, <code>bibtex</code>, etc.</td></tr>
+          <tr><td><strong>LaTeX Workshop</strong></td><td>VS Code extension by James Yu</td><td>Extension ID: <code>James-Yu.latex-workshop</code></td></tr>
+          <tr><td><strong>Git</strong></td><td>Any recent version</td><td>For syncing with Overleaf</td></tr>
+          <tr><td><strong>Overleaf account</strong></td><td><em>Paid plan</em> for Git bridge; <em>Premium</em> for GitHub sync</td><td>Free tier does not include Git access</td></tr>
+          <tr><td><strong>Claude Code</strong></td><td>Claude Code CLI</td><td><a href="https://claude.ai/code" target="_blank">claude.ai/code</a></td></tr>
+        </tbody>
+      </table>
+      <div class="callout warn">
+        <strong>Overleaf paid plan required.</strong> The Git bridge (and GitHub sync) are not available on free Overleaf accounts. If your institution has an Overleaf site license, check whether it includes Git access.
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 1: VS Code LaTeX -->
+  <section>
+    <h2>Setup</h2>
+
+    <div class="card">
+      <div class="step-header">
+        <div class="step-num">1</div>
+        <div class="step-title">Install LaTeX Workshop in VS Code</div>
+      </div>
+      <p>Open VS Code, go to the Extensions panel (<code>Ctrl+Shift+X</code>), and search for <strong>LaTeX Workshop</strong> by James Yu. Install it.</p>
+      <p>LaTeX Workshop automatically detects your LaTeX distribution and compiles on save. The default build recipe is <code>pdflatex</code> → <code>bibtex</code> → <code>pdflatex × 2</code>, which handles most documents including those with bibliographies.</p>
+
+      <h3>Verify the install</h3>
+      <p>Create a test file <code>hello.tex</code> and save it. VS Code should compile automatically and open a PDF preview panel.</p>
+      <pre><span class="comment">% hello.tex — paste this to test</span>
+\documentclass{article}
+\begin{document}
+Hello, world.
+\end{document}</pre>
+      <p>Press <code>Ctrl+Alt+B</code> to build manually, or <code>Ctrl+Alt+V</code> to open the PDF viewer.</p>
+
+      <h3>Useful settings (settings.json)</h3>
+      <p>Add these to your VS Code <code>settings.json</code> for a smoother experience:</p>
+      <pre>{
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.clean.fileTypes": [
+    "*.aux", "*.bbl", "*.blg", "*.log", "*.out", "*.toc"
+  ],
+  "latex-workshop.latex.autoClean.run": "onSucceeded"
+}</pre>
+      <p><code>autoClean</code> removes build artefacts after a successful compile so your folder stays tidy — important when the project is also a Git repo.</p>
+    </div>
+
+    <!-- Step 2: Claude Code -->
+    <div class="card">
+      <div class="step-header">
+        <div class="step-num">2</div>
+        <div class="step-title">Use Claude Code on your .tex files</div>
+      </div>
+      <p>Claude Code runs in the terminal alongside VS Code and edits <code>.tex</code> files directly — the same way it edits any code file. Open a terminal in your project folder and run <code>claude</code>.</p>
+
+      <h3>Things Claude is especially good at in LaTeX</h3>
+      <ul>
+        <li><strong>Fixing compilation errors</strong> — paste the error log and ask Claude to diagnose and fix it</li>
+        <li><strong>Rewriting sections</strong> — "rewrite the introduction to be more concise"</li>
+        <li><strong>Generating tables</strong> — describe a table in plain English; Claude writes the <code>tabular</code> environment</li>
+        <li><strong>Equations</strong> — describe the math; Claude writes the <code>equation</code> or <code>align</code> block</li>
+        <li><strong>Bibliography cleanup</strong> — reformatting <code>.bib</code> entries, fixing missing fields</li>
+        <li><strong>Boilerplate</strong> — figure environments, subfigures, custom commands, preamble packages</li>
+      </ul>
+
+      <h3>Add a CLAUDE.md to your project</h3>
+      <p>A <code>CLAUDE.md</code> in your project root gives Claude persistent context about the document so you don't repeat yourself every session:</p>
+      <pre><span class="comment"># CLAUDE.md — project instructions for Claude Code</span>
+
+This is a journal paper submitted to IEEE Transactions on X.
+Main file: main.tex
+Bibliography: refs.bib
+Style: IEEE two-column, \documentclass[journal]{IEEEtran}
+
+Do not alter section headings.
+Citation style: numeric [1], not author-year.
+Avoid passive voice in abstract and introduction.</pre>
+
+      <div class="callout tip">
+        <strong>Tip: use Claude to fix LaTeX errors.</strong> When LaTeX Workshop shows a build error, open the log panel, copy the relevant lines, and ask Claude: <em>"LaTeX gave this error — fix it."</em> Claude will find and correct the offending line.
+      </div>
+    </div>
+
+    <!-- Step 3: Overleaf Git Bridge -->
+    <div class="card">
+      <div class="step-header">
+        <div class="step-num">3</div>
+        <div class="step-title">Connect to Overleaf via the Git bridge <span class="method-badge badge-primary">Primary</span></div>
+      </div>
+      <p>Overleaf's Git bridge gives every project a private Git remote. You push from VS Code and your collaborators see the changes live in Overleaf.</p>
+
+      <h3>One-time setup</h3>
+      <ol>
+        <li>In Overleaf, open your project and go to <strong>Menu → Git</strong>.</li>
+        <li>Copy the clone URL — it looks like:<br>
+          <code>https://git.overleaf.com/YOUR_PROJECT_ID</code></li>
+        <li>In your terminal, clone it into a local folder:<br>
+          <pre>git clone https://git.overleaf.com/YOUR_PROJECT_ID my-paper</pre></li>
+        <li>When prompted for credentials, use your <strong>Overleaf email and password</strong>.<br>
+          If you use SSO (Google login), you'll need to set a password first under <em>Account → Password</em>.</li>
+      </ol>
+
+      <div class="callout">
+        <strong>Existing local files?</strong> If you already have <code>.tex</code> files locally, clone the Overleaf repo first, then copy your files into the cloned folder, then commit and push.
+      </div>
+
+      <h3>Storing credentials (optional but recommended)</h3>
+      <p>So Git doesn't ask for your password every push:</p>
+      <pre><span class="comment"># Windows: use Git Credential Manager (installed with Git for Windows)</span>
+git config --global credential.helper manager
+
+<span class="comment"># Mac</span>
+git config --global credential.helper osxkeychain</pre>
+
+      <h3>Daily workflow</h3>
+      <pre><span class="comment"># Pull any changes collaborators made in Overleaf</span>
+git pull
+
+<span class="comment"># Edit files in VS Code (with Claude if needed), then:</span>
+git add .
+git commit -m "Revised introduction"
+git push    <span class="comment"># syncs to Overleaf immediately</span></pre>
+
+      <div class="callout warn">
+        <strong>One branch only.</strong> The Overleaf Git bridge exposes a single <code>master</code> branch. You cannot use feature branches — anything pushed to <code>master</code> goes live in Overleaf. Keep your commits clean.
+      </div>
+    </div>
+
+    <!-- Step 4: GitHub Sync -->
+    <div class="card">
+      <div class="step-header">
+        <div class="step-num">4</div>
+        <div class="step-title">Alternative: GitHub sync <span class="method-badge badge-alt">Alternative</span></div>
+      </div>
+      <p>On Overleaf's <strong>Premium</strong> tier, you can link a project directly to a GitHub repository instead of using the Git bridge. Overleaf pushes and pulls from GitHub, and you work from the GitHub remote as normal.</p>
+
+      <h3>Setup</h3>
+      <ol>
+        <li>Create a GitHub repository for your paper (can be private).</li>
+        <li>In Overleaf, go to <strong>Menu → GitHub</strong>.</li>
+        <li>Connect your GitHub account if prompted, then link to the repository.</li>
+        <li>Clone the GitHub repo locally as you normally would:<br>
+          <pre>git clone https://github.com/YOUR_ORG/YOUR_PAPER.git</pre></li>
+      </ol>
+
+      <h3>Workflow difference</h3>
+      <p>Overleaf does <em>not</em> auto-sync — you push to GitHub from VS Code, then Overleaf merges in when you or a collaborator clicks <strong>Menu → GitHub → Pull</strong> inside Overleaf. It's a manual merge step on the Overleaf side.</p>
+
+      <div class="two-col" style="margin-top:1rem;">
+        <div style="background:#f0f4ff;border-radius:8px;padding:1rem;">
+          <strong>Git bridge</strong>
+          <ul style="margin-top:0.5rem;font-size:0.9rem;">
+            <li>Overleaf-hosted remote</li>
+            <li>Push = instant Overleaf update</li>
+            <li>One branch (master)</li>
+            <li>Requires paid plan</li>
+          </ul>
+        </div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:1rem;">
+          <strong>GitHub sync</strong>
+          <ul style="margin-top:0.5rem;font-size:0.9rem;">
+            <li>GitHub-hosted remote</li>
+            <li>Overleaf pulls manually</li>
+            <li>Full Git branching</li>
+            <li>Requires Premium tier</li>
+          </ul>
+        </div>
+      </div>
+
+      <p style="margin-top:0.8rem;">Use <strong>Git bridge</strong> when collaborators live primarily in Overleaf and you want changes to appear instantly. Use <strong>GitHub sync</strong> when you want full branching, CI, or an audit trail on GitHub.</p>
+    </div>
+  </section>
+
+  <!-- Gotchas -->
+  <section>
+    <h2>Common issues</h2>
+    <div class="card">
+      <h3>Merge conflicts with Overleaf collaborators</h3>
+      <p>If a collaborator edits in Overleaf while you edit locally, a <code>git pull</code> may produce a conflict. Overleaf inserts conflict markers the same way GitHub does. Resolve them in VS Code's merge editor, then <code>git add</code> and <code>git push</code>.</p>
+
+      <h3>Authentication errors on push</h3>
+      <p>If you signed up for Overleaf via Google (no password set), the Git bridge will reject your credentials. Go to <strong>Overleaf → Account settings → Password</strong> and set one.</p>
+
+      <h3>LaTeX Workshop not finding pdflatex</h3>
+      <p>On Windows with MiKTeX, make sure MiKTeX's <code>bin</code> folder is on your system <code>PATH</code>. Restart VS Code after installing MiKTeX. You can verify with <code>pdflatex --version</code> in a terminal.</p>
+
+      <h3>Build artefacts cluttering Git</h3>
+      <p>Add a <code>.gitignore</code> to keep compiled output out of your commits:</p>
+      <pre><span class="comment"># .gitignore for LaTeX</span>
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.pdf</pre>
+      <div class="callout tip">
+        Whether to commit the PDF is a project choice. Committing it means Overleaf always has a compiled copy, but it inflates repo size. For papers, most teams omit it.
+      </div>
+
+      <h3>SyncTeX: jump from PDF to source</h3>
+      <p>LaTeX Workshop supports SyncTeX — click a location in the PDF preview and the cursor jumps to the corresponding line in the <code>.tex</code> file. Use <code>Ctrl+click</code> in the PDF panel, or <code>Ctrl+Alt+J</code> from the editor to jump to the PDF.</p>
+    </div>
+  </section>
+
+  <!-- Claude prompts -->
+  <section>
+    <h2>Claude prompts that work well</h2>
+    <div class="card">
+      <p>These prompts work reliably in Claude Code when working on a LaTeX project:</p>
+
+      <h3>Fix a compilation error</h3>
+      <pre>"LaTeX build failed with this error:
+! Undefined control sequence.
+l.47   \tightlist
+Fix it."</pre>
+
+      <h3>Generate a table from data</h3>
+      <pre>"Write a LaTeX table with three columns: Method, Accuracy (%), Runtime (s).
+Rows: Baseline 72.3 1.2, Ours 89.1 1.4, Oracle 94.0 0.9.
+Use booktabs style (toprule, midrule, bottomrule)."</pre>
+
+      <h3>Rewrite a passage</h3>
+      <pre>"Rewrite the abstract in section.tex to be under 150 words.
+Keep all technical claims. Use active voice."</pre>
+
+      <h3>Add a figure environment</h3>
+      <pre>"Add a figure environment after line 83 in results.tex.
+File: figures/accuracy_curve.pdf
+Caption: Training accuracy over epochs for all three models.
+Label: fig:accuracy"</pre>
+    </div>
+  </section>
+
+  <div style="text-align:center;margin-top:1rem;">
+    <a href="tech-stacks.html" class="btn">← Back to Tech Stacks</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>Build With AI &mdash; <a href="feedback.html">Suggest or Improve</a> &mdash; <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">Back to intro primer</a></p>
+</footer>
+
+</body>
+</html>
