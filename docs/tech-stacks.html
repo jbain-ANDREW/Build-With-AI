@@ -22,21 +22,42 @@
     .nav-dropdown-menu a:hover { background: #16213e; }
     main { max-width: 860px; margin: 2.5rem auto; padding: 0 1.5rem; }
     p { line-height: 1.7; margin-bottom: 0.6rem; }
-    .coming-soon {
-      background: white;
-      border-radius: 10px;
-      padding: 3rem 2rem;
-      text-align: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-      margin-top: 1rem;
-    }
-    .coming-soon .icon { font-size: 3rem; margin-bottom: 1rem; }
-    .coming-soon h2 { font-size: 1.4rem; margin-bottom: 0.6rem; }
-    .coming-soon p { color: #666; max-width: 480px; margin: 0 auto 1.5rem; }
-    .topic-list { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 1rem; }
-    .topic-list li { background: #e8ecf0; border-radius: 20px; padding: 0.3rem 0.9rem; font-size: 0.88rem; color: #444; }
-    .btn { display: inline-block; background: #0f3460; color: white; padding: 0.6rem 1.4rem; border-radius: 5px; text-decoration: none; font-size: 0.93rem; transition: background 0.2s; }
-    .btn:hover { background: #16213e; }
+    h2 { font-size: 1.25rem; font-weight: 600; margin: 2rem 0 0.8rem; color: #1a1a2e; }
+
+    /* Stack cards */
+    .stack-card { background: white; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); margin-bottom: 0.8rem; overflow: hidden; }
+    .stack-card summary { padding: 1rem 1.4rem; font-size: 1.05rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .stack-card summary::-webkit-details-marker { display: none; }
+    .stack-card summary::after { content: '▸'; font-size: 0.85rem; color: #888; margin-left: 0.5rem; }
+    .stack-card[open] summary::after { content: '▾'; }
+    .stack-card summary:hover { background: #f8f9fa; }
+    .stack-card-body { padding: 0.2rem 1.4rem 1.4rem; }
+    .stack-meta { font-size: 0.82rem; color: #777; font-weight: 400; margin-left: 0.8rem; }
+    .col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 0.8rem 0; }
+    @media (max-width: 600px) { .col-2 { grid-template-columns: 1fr; } }
+    .col-2 h4 { font-size: 0.88rem; text-transform: uppercase; letter-spacing: 0.04em; color: #555; margin-bottom: 0.4rem; }
+    .col-2 ul { margin-left: 1.1rem; font-size: 0.9rem; line-height: 1.85; color: #444; }
+    .stack-note { font-size: 0.88rem; color: #666; font-style: italic; margin: 0.5rem 0 0.8rem; }
+    .when-to-use { background: #f0f4ff; border-left: 3px solid #0f3460; padding: 0.65rem 1rem; border-radius: 0 6px 6px 0; margin-top: 0.8rem; font-size: 0.9rem; line-height: 1.7; }
+    .when-to-use strong { color: #0f3460; }
+
+    /* Guide cards */
+    .guide-card { background: white; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); padding: 1.4rem 1.8rem; margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1.2rem; }
+    .guide-card .icon { font-size: 2rem; flex-shrink: 0; }
+    .guide-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .guide-card h3 a { color: #0f3460; text-decoration: none; }
+    .guide-card p { color: #555; font-size: 0.92rem; line-height: 1.6; margin: 0; }
+    .guide-card .btn { display: inline-block; margin-top: 0.6rem; background: #0f3460; color: white; padding: 0.4rem 1rem; border-radius: 4px; font-size: 0.88rem; text-decoration: none; transition: background 0.2s; }
+    .guide-card .btn:hover { background: #16213e; }
+
+    /* Selection guide table */
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.07); margin-bottom: 1.5rem; }
+    th { background: #1a1a2e; color: white; padding: 0.65rem 1rem; text-align: left; }
+    td { padding: 0.6rem 1rem; border-bottom: 1px solid #eee; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8f9fa; }
+    code { background: #eef; border-radius: 3px; padding: 0.1em 0.35em; font-size: 0.88em; font-family: 'Consolas', monospace; }
+
     footer { text-align: center; padding: 1.5rem; font-size: 0.85rem; color: #888; margin-top: 2rem; }
     footer a { color: #888; }
   </style>
@@ -66,36 +87,219 @@
     <span>Tech Stacks &#9662;</span>
     <div class="nav-dropdown-menu">
       <a href="tech-stacks.html">Overview</a>
+      <a href="stack-comparison.html">Stack Comparison</a>
       <a href="latex-overleaf.html">LaTeX + Overleaf</a>
     </div>
   </div>
   <a href="feedback.html">Suggest or Improve</a>
-  <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">← Back to Basics</a>
+  <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">&#8592; Back to Basics</a>
   <a href="https://github.com/jbain-ANDREW/Build-With-AI" target="_blank">GitHub Repo</a>
 </nav>
 
 <main>
   <section>
-    <p style="margin-bottom:1.5rem;line-height:1.7;">A <em>tech stack</em> is the combination of tools and services that together make a project work. Picking the right stack early saves a lot of rework. Each guide below covers a specific combination — what it does, how to set it up, and how to use Claude effectively within it.</p>
+    <p style="margin-bottom:1.5rem;">A <em>tech stack</em> is the combination of tools and services that together make a project work. Picking the right stack early saves a lot of rework. The stacks below cover the full range from zero-infrastructure static sites to real-time multi-user apps — each with distinct trade-offs on speed-to-build, flexibility, and deployment complexity. Click any stack to expand it.</p>
 
-    <div style="background:white;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,0.07);padding:1.4rem 1.8rem;margin-bottom:1.2rem;display:flex;align-items:flex-start;gap:1.2rem;">
-      <div style="font-size:2rem;flex-shrink:0;">📄</div>
+    <!-- ── Stack cards ─────────────────────────────────────────── -->
+
+    <details class="stack-card">
+      <summary>GitHub Pages — Static HTML/CSS/JS <span class="stack-meta">Simplest possible hosting</span></summary>
+      <div class="stack-card-body">
+        <div class="col-2">
+          <div>
+            <h4>Strengths</h4>
+            <ul>
+              <li>Zero infrastructure — push to GitHub, it's live</li>
+              <li>No build step, no dependencies, no package.json</li>
+              <li>Free hosting, permanent URLs, works everywhere</li>
+              <li>Easy for beginners to inspect and learn from</li>
+              <li>Perfect for content-first sites: tutorials, docs, portfolios</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Weaknesses</h4>
+            <ul>
+              <li>No dynamic data — everything hardcoded or fetched from external APIs</li>
+              <li>No authentication without a third-party service</li>
+              <li>No shared state between pages</li>
+              <li>Updating repeated elements (nav, footer) requires editing every file</li>
+            </ul>
+          </div>
+        </div>
+        <div class="when-to-use">
+          <strong>Use when:</strong> teaching content, documentation, project landing pages, or anything mostly static and updated infrequently. The simplest possible hosting story.
+        </div>
+      </div>
+    </details>
+
+    <details class="stack-card">
+      <summary>Python + Streamlit <span class="stack-meta">Fastest to build data tools</span></summary>
+      <div class="stack-card-body">
+        <p class="stack-note">Two backend variants: <strong>Google Sheets</strong> (cloud, stakeholder-editable) or <strong>SQLite</strong> (local, relational, schema-enforced). Same frontend and deployment model for both.</p>
+        <div class="col-2">
+          <div>
+            <h4>Strengths</h4>
+            <ul>
+              <li>Entire API layer and frontend collapse into Python — no HTML, CSS, or JS</li>
+              <li>Full pandas / Plotly / numpy ecosystem for data work</li>
+              <li>Google Sheets variant: stakeholders edit data without opening the app</li>
+              <li>SQLite variant: real relational DB with foreign keys and versioned migrations</li>
+              <li>Streamlit Cloud: <code>git push</code> → live with no server config</li>
+              <li>Session state is built in — no state management decisions</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Weaknesses</h4>
+            <ul>
+              <li>UI constrained by Streamlit's widget model — less flexible than React</li>
+              <li>Not suitable for public-facing or high-traffic sites (session-per-user)</li>
+              <li>No real-time sync — data refreshes on demand, not live</li>
+              <li>Local SQLite variant: single-user only, no public URL without extra work</li>
+            </ul>
+          </div>
+        </div>
+        <div class="when-to-use">
+          <strong>Use when:</strong> academic or institutional tools where data lives in Sheets or SQLite; any workflow needing pandas, rich visualization, or fast CRUD UI with minimal front-end code.
+        </div>
+      </div>
+    </details>
+
+    <details class="stack-card">
+      <summary>Python + Flask + SQLite <span class="stack-meta">Full control, local-only</span></summary>
+      <div class="stack-card-body">
+        <div class="col-2">
+          <div>
+            <h4>Strengths</h4>
+            <ul>
+              <li>Full control over every HTTP route and Jinja2 template</li>
+              <li>SQLite: real relational DB, zero setup, no cloud dependency</li>
+              <li>Lightweight — easy to add routes, logic, and templates</li>
+              <li>Runs entirely locally; data never leaves your machine</li>
+              <li>Good for complex business logic that doesn't fit Streamlit's widget model</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Weaknesses</h4>
+            <ul>
+              <li>Local-only by default — sharing requires tunneling or hosting work</li>
+              <li>More boilerplate than Streamlit for simple CRUD views</li>
+              <li>No built-in auth or multi-user support</li>
+              <li>No live updates — requires manual capture-and-refresh cycle</li>
+              <li>SQLite doesn't scale to concurrent multi-user access</li>
+            </ul>
+          </div>
+        </div>
+        <div class="when-to-use">
+          <strong>Use when:</strong> personal productivity tools needing real data logic and persistence, Gmail/Calendar API access, and local-only privacy. Not for sharing with others without significant extra work.
+        </div>
+      </div>
+    </details>
+
+    <details class="stack-card">
+      <summary>React + Vite + Firebase + Vercel <span class="stack-meta">Real-time, multi-user, production-grade</span></summary>
+      <div class="stack-card-body">
+        <div class="col-2">
+          <div>
+            <h4>Strengths</h4>
+            <ul>
+              <li>Real-time sync via Firestore <code>onSnapshot</code> — all users see changes instantly</li>
+              <li>Firebase Auth handles login with zero backend code</li>
+              <li>Component model makes complex UIs manageable (tabs, modals, expandable rows)</li>
+              <li>Vercel deployment: fast, free, automatic on <code>git push</code></li>
+              <li>Scales to many concurrent users without server management</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Weaknesses</h4>
+            <ul>
+              <li>High setup complexity: Node, npm, Firebase project, Firestore rules, Vercel account</li>
+              <li>Mandatory build step (Vite / webpack) before any deployment</li>
+              <li>Cold-start learning curve for React state and component patterns</li>
+              <li>Overkill for simple or single-user tools</li>
+              <li>Data in Firestore (NoSQL) — not directly spreadsheet-editable</li>
+            </ul>
+          </div>
+        </div>
+        <div class="when-to-use">
+          <strong>Use when:</strong> multi-user collaboration where real-time sync matters and the UI needs to be polished and interactive. Not for solo tools, analytical work, or anything where data needs to live in Sheets.
+        </div>
+      </div>
+    </details>
+
+    <details class="stack-card">
+      <summary>Google Apps Script + Sheets + GitHub Pages <span class="stack-meta">Zero infrastructure, Google-native</span></summary>
+      <div class="stack-card-body">
+        <div class="col-2">
+          <div>
+            <h4>Strengths</h4>
+            <ul>
+              <li>Zero infrastructure — deploys as a URL directly from Google's servers</li>
+              <li>Native access to Sheets, Drive, Gmail, Calendar — no OAuth keys needed</li>
+              <li>Config live-editable in Sheets by non-developers</li>
+              <li>Works on any device; phone camera via <code>capture="environment"</code></li>
+              <li>Free within GAS quotas (generous at personal and small-team scale)</li>
+              <li>clasp enables local editing with git version control synced to GAS</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Weaknesses</h4>
+            <ul>
+              <li>Two separate deployment steps and two separate URLs (GitHub Pages + GAS <code>/exec</code>)</li>
+              <li>No real-time updates — data loads on demand</li>
+              <li>UI flexibility limited vs. React; no npm ecosystem</li>
+              <li>GAS runtime is Google-controlled — quota limits cap scale</li>
+              <li>Multi-Google-account Chrome environments can cause access issues</li>
+            </ul>
+          </div>
+        </div>
+        <div class="when-to-use">
+          <strong>Use when:</strong> personal or small-team tools where data is already in Sheets, phone-first data capture, no hosting budget, or config needs to be editable by non-developers directly in Sheets.
+        </div>
+      </div>
+    </details>
+
+    <!-- ── Stack Selection Guide ───────────────────────────────── -->
+
+    <h2>Stack Selection Guide</h2>
+    <table>
+      <thead>
+        <tr><th>What you need</th><th>Recommended stack</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Teaching content, documentation, or a landing page</td><td>GitHub Pages</td></tr>
+        <tr><td>Data analysis with charts or rich visualization</td><td>Python + Streamlit</td></tr>
+        <tr><td>Institutional tool where stakeholders edit data in Sheets</td><td>Python + Streamlit + Google Sheets</td></tr>
+        <tr><td>Local tool needing a real relational DB with schema migrations</td><td>Python + Streamlit + SQLite</td></tr>
+        <tr><td>Personal local tool with Gmail / Google API access</td><td>Python + Flask + SQLite</td></tr>
+        <tr><td>Multi-user real-time collaboration</td><td>React + Firebase</td></tr>
+        <tr><td>Polished interactive UI for a distributed team</td><td>React + Firebase</td></tr>
+        <tr><td>Phone-first data capture, config in Sheets, no hosting budget</td><td>Google Apps Script</td></tr>
+        <tr><td>Small personal tool fully inside the Google ecosystem</td><td>Google Apps Script</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ── Tooling Guides ──────────────────────────────────────── -->
+
+    <h2>Tooling Guides</h2>
+
+    <div class="guide-card">
+      <div class="icon">&#128202;</div>
       <div>
-        <div style="font-size:1.1rem;font-weight:600;margin-bottom:0.3rem;"><a href="latex-overleaf.html" style="color:#0f3460;text-decoration:none;">VS Code + LaTeX + Claude + Overleaf</a></div>
-        <p style="color:#555;font-size:0.93rem;line-height:1.6;">Write LaTeX locally in VS Code with AI assistance from Claude Code, sync to Overleaf for collaborator access via the Git bridge or GitHub sync. Full walkthrough: install, configure, connect, and daily workflow.</p>
-        <a href="latex-overleaf.html" style="display:inline-block;margin-top:0.6rem;background:#0f3460;color:white;padding:0.4rem 1rem;border-radius:4px;font-size:0.88rem;text-decoration:none;">Read guide →</a>
+        <h3><a href="stack-comparison.html">Stack Function Comparison</a></h3>
+        <p>All 34 web-app functions — data storage, authentication, API layer, frontend rendering, hosting, dev toolchain — mapped across all 5 stacks. Each cell names the specific tool or library, not the category, so you can see exactly what each stack asks you to write or configure.</p>
+        <a href="stack-comparison.html" class="btn">View comparison &#8594;</a>
       </div>
     </div>
 
-    <div style="background:white;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,0.07);padding:1.4rem 1.8rem;opacity:0.6;">
-      <div style="font-size:1.1rem;font-weight:600;margin-bottom:0.3rem;color:#555;">More stacks — coming soon</div>
-      <ul style="margin-left:1.2rem;color:#666;font-size:0.9rem;line-height:1.9;">
-        <li>GAS-only: Sheets + HtmlService + no backend</li>
-        <li>Python + HTML/JS: Flask or FastAPI front-to-back</li>
-        <li>Vercel + Firebase: React frontend + Firestore data</li>
-        <li>When to add a database vs staying spreadsheet-native</li>
-      </ul>
+    <div class="guide-card">
+      <div class="icon">&#128196;</div>
+      <div>
+        <h3><a href="latex-overleaf.html">VS Code + LaTeX + Claude + Overleaf</a></h3>
+        <p>Write LaTeX locally in VS Code with AI assistance from Claude Code, sync to Overleaf for collaborator access via the Git bridge or GitHub sync. Full walkthrough: install, configure, connect, and daily workflow.</p>
+        <a href="latex-overleaf.html" class="btn">Read guide &#8594;</a>
+      </div>
     </div>
+
   </section>
 </main>
 
