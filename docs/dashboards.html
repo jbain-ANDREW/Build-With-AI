@@ -20,24 +20,46 @@
     .nav-dropdown:hover .nav-dropdown-menu { display: block; }
     .nav-dropdown-menu a { display: block; padding: 0.45rem 1rem; border-radius: 0; white-space: nowrap; }
     .nav-dropdown-menu a:hover { background: #16213e; }
+
     main { max-width: 860px; margin: 2.5rem auto; padding: 0 1.5rem; }
     p { line-height: 1.7; margin-bottom: 0.6rem; }
-    .coming-soon {
-      background: white;
-      border-radius: 10px;
-      padding: 3rem 2rem;
-      text-align: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-      margin-top: 1rem;
-    }
-    .coming-soon .icon { font-size: 3rem; margin-bottom: 1rem; }
-    .coming-soon h2 { font-size: 1.4rem; margin-bottom: 0.6rem; }
-    .coming-soon p { color: #666; max-width: 480px; margin: 0 auto 1.5rem; }
-    .topic-list { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 1rem; }
-    .topic-list li { background: #e8ecf0; border-radius: 20px; padding: 0.3rem 0.9rem; font-size: 0.88rem; color: #444; }
-    .btn { display: inline-block; background: #0f3460; color: white; padding: 0.6rem 1.4rem; border-radius: 5px; text-decoration: none; font-size: 0.93rem; transition: background 0.2s; }
-    .btn:hover { background: #16213e; }
-    footer { text-align: center; padding: 1.5rem; font-size: 0.85rem; color: #888; margin-top: 2rem; }
+    h2 { font-size: 1.2rem; font-weight: 700; margin: 2.5rem 0 0.6rem; color: #1a1a2e; }
+    h3 { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.4rem; color: #0f3460; }
+
+    /* Approach cards */
+    .approach-card { background: white; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); margin-bottom: 0.8rem; overflow: hidden; }
+    .approach-card summary { padding: 0.9rem 1.3rem; font-size: 1rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .approach-card summary::-webkit-details-marker { display: none; }
+    .approach-card summary::after { content: '▸'; font-size: 0.85rem; color: #888; margin-left: 0.5rem; }
+    .approach-card[open] summary::after { content: '▾'; }
+    .approach-card summary:hover { background: #f8f9fa; }
+    .approach-body { padding: 0.2rem 1.3rem 1.3rem; }
+    .approach-meta { font-size: 0.82rem; color: #777; font-weight: 400; margin-left: 0.8rem; }
+
+    /* Code blocks */
+    pre { background: #1e1e2e; color: #cdd6f4; border-radius: 8px; padding: 1rem 1.2rem; overflow-x: auto; font-size: 0.83rem; line-height: 1.65; margin: 0.8rem 0; font-family: 'Consolas', 'Courier New', monospace; }
+    code { background: #eef; border-radius: 3px; padding: 0.1em 0.35em; font-size: 0.88em; font-family: 'Consolas', monospace; }
+    pre code { background: none; padding: 0; font-size: inherit; color: inherit; }
+    .comment { color: #6c7086; }
+    .str { color: #a6e3a1; }
+    .kw { color: #89b4fa; }
+    .fn { color: #cba6f7; }
+    .num { color: #fab387; }
+
+    /* Tables */
+    .table-wrap { overflow-x: auto; margin-bottom: 1rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+    th { background: #1a1a2e; color: white; padding: 0.6rem 1rem; text-align: left; }
+    td { padding: 0.55rem 1rem; border-bottom: 1px solid #eee; vertical-align: top; line-height: 1.55; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8f9fa; }
+
+    /* Callouts */
+    .note { background: #f0f4ff; border-left: 3px solid #0f3460; padding: 0.65rem 1rem; border-radius: 0 6px 6px 0; margin: 0.8rem 0; font-size: 0.9rem; line-height: 1.7; }
+    .warn { background: #fff8e6; border-left: 3px solid #d97706; padding: 0.65rem 1rem; border-radius: 0 6px 6px 0; margin: 0.8rem 0; font-size: 0.9rem; line-height: 1.7; }
+    .warn strong { color: #92400e; }
+
+    footer { text-align: center; padding: 1.5rem; font-size: 0.85rem; color: #888; margin-top: 3rem; }
     footer a { color: #888; }
   </style>
 </head>
@@ -45,7 +67,7 @@
 
 <header>
   <h1>Dashboards</h1>
-  <p>Live data views powered by Google Sheets, Charts.js, or plain HTML/JavaScript</p>
+  <p>Live data views powered by Google Sheets, Chart.js, or Python</p>
 </header>
 
 <nav>
@@ -71,26 +93,314 @@
     </div>
   </div>
   <a href="feedback.html">Suggest or Improve</a>
-  <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">← Back to Basics</a>
+  <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">&#8592; Back to Basics</a>
   <a href="https://github.com/jbain-ANDREW/Build-With-AI" target="_blank">GitHub Repo</a>
 </nav>
 
 <main>
-  <div class="coming-soon">
-    <div class="icon">📊</div>
-    <h2>Coming Soon</h2>
-    <p>This section is under development. It will cover the following topics:</p>
-    <ul class="topic-list">
-      <li>Google Sheets as a data source</li>
-      <li>GAS web app dashboards</li>
-      <li>Charts.js basics</li>
-      <li>Auto-refreshing data</li>
-      <li>Embedding in a webpage</li>
-      <li>AI prompts for chart code</li>
-    </ul>
-    <br>
-    <a href="index.html" class="btn">← Back to Home</a>
+
+  <p style="margin-bottom:1.5rem;">A dashboard is a page that shows live or recent data — updated automatically or refreshed on demand. The right approach depends entirely on where your data lives and what tools you're already using. This page covers three patterns that match the stacks on this site, then digs into the cross-cutting mechanics: Sheets as a data source, Chart.js, auto-refresh, and embedding.</p>
+
+  <!-- ── Approach picker ─────────────────────────────────────── -->
+  <h2>Which approach fits your situation?</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Your data lives in…</th><th>You want to use…</th><th>Best approach</th></tr></thead>
+      <tbody>
+        <tr><td>SQLite or a Python object</td><td>Python (Streamlit)</td><td>Streamlit metrics + Plotly charts</td></tr>
+        <tr><td>Google Sheets</td><td>Python (Streamlit)</td><td>Streamlit + gspread, data into pandas</td></tr>
+        <tr><td>Google Sheets</td><td>A static website (GitHub Pages)</td><td>GAS /exec endpoint + Chart.js in JS</td></tr>
+        <tr><td>Google Sheets (public)</td><td>Any JavaScript</td><td>Published CSV URL + fetch + Chart.js</td></tr>
+        <tr><td>Any JSON endpoint</td><td>Any JavaScript</td><td>fetch() + Chart.js + optional auto-refresh</td></tr>
+      </tbody>
+    </table>
   </div>
+
+  <!-- ── Approaches ──────────────────────────────────────────── -->
+  <h2>Approaches</h2>
+
+  <details class="approach-card">
+    <summary>Streamlit dashboard <span class="approach-meta">Python — fastest for data people</span></summary>
+    <div class="approach-body">
+      <p>Streamlit gives you charts, metrics, and data tables as Python function calls. There's no HTML, no JavaScript, and no fetch — your Python code runs server-side and Streamlit renders the result. This is the fastest approach if your data is already in Python (SQLite queries, pandas DataFrames, numpy arrays).</p>
+
+      <h3>Key widgets</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Widget</th><th>Use for</th></tr></thead>
+          <tbody>
+            <tr><td><code>st.metric(label, value, delta)</code></td><td>KPI tile with optional up/down indicator</td></tr>
+            <tr><td><code>st.dataframe(df)</code></td><td>Sortable, filterable table from a pandas DataFrame</td></tr>
+            <tr><td><code>st.plotly_chart(fig)</code></td><td>Interactive Plotly chart (bar, line, scatter, etc.)</td></tr>
+            <tr><td><code>st.bar_chart(df)</code></td><td>Quick bar chart directly from a DataFrame column</td></tr>
+            <tr><td><code>st.line_chart(df)</code></td><td>Quick line chart directly from a DataFrame column</td></tr>
+            <tr><td><code>st.columns(n)</code></td><td>Lay widgets side-by-side in a grid</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Minimal example — metrics + bar chart</h3>
+      <pre><span class="kw">import</span> streamlit <span class="kw">as</span> st
+<span class="kw">import</span> pandas <span class="kw">as</span> pd
+<span class="kw">import</span> plotly.express <span class="kw">as</span> px
+<span class="kw">import</span> db  <span class="comment"># your data layer</span>
+
+st.title(<span class="str">"Engagement Dashboard"</span>)
+
+people = pd.DataFrame(db.get_all_people())
+
+<span class="comment"># KPI row</span>
+c1, c2, c3 = st.columns(<span class="num">3</span>)
+c1.metric(<span class="str">"Total people"</span>, len(people))
+c2.metric(<span class="str">"Active"</span>, (people[<span class="str">"engagement"</span>] == <span class="str">"Active"</span>).sum())
+c3.metric(<span class="str">"Alumni"</span>, (people[<span class="str">"standing"</span>] == <span class="str">"Alumni"</span>).sum())
+
+<span class="comment"># Bar chart by standing</span>
+by_standing = people[<span class="str">"standing"</span>].value_counts().reset_index()
+by_standing.columns = [<span class="str">"Standing"</span>, <span class="str">"Count"</span>]
+fig = px.bar(by_standing, x=<span class="str">"Standing"</span>, y=<span class="str">"Count"</span>)
+st.plotly_chart(fig, use_container_width=<span class="kw">True</span>)</pre>
+
+      <h3>Auto-refresh in Streamlit</h3>
+      <pre><span class="kw">import</span> time
+
+<span class="comment"># re-run the entire script every 60 seconds</span>
+st.write(<span class="str">f"Last updated: {time.strftime('%H:%M:%S')}"</span>)
+time.sleep(<span class="num">60</span>)
+st.rerun()</pre>
+      <div class="note">Put <code>@st.cache_data(ttl=60)</code> on your data-fetching functions so a rerun hits the cache instead of the database on every tick.</div>
+    </div>
+  </details>
+
+  <details class="approach-card">
+    <summary>GAS web app + JavaScript dashboard <span class="approach-meta">No Python — lives inside Google's ecosystem</span></summary>
+    <div class="approach-body">
+      <p>When your data is in Google Sheets and your frontend is a static HTML page (GitHub Pages), the pattern is: a Google Apps Script deployment serves as the backend API, and your HTML page fetches data from it. The GAS <code>doGet</code> function returns JSON; your JavaScript parses it and renders charts.</p>
+
+      <h3>GAS backend — doGet returning JSON</h3>
+      <pre><span class="comment">// Code.gs (Google Apps Script)</span>
+<span class="kw">function</span> <span class="fn">doGet</span>(e) {
+  <span class="kw">const</span> sheet = SpreadsheetApp
+    .openById(<span class="str">"YOUR_SPREADSHEET_ID"</span>)
+    .getSheetByName(<span class="str">"Data"</span>);
+
+  <span class="kw">const</span> rows = sheet.getDataRange().getValues();
+  <span class="kw">const</span> headers = rows[<span class="num">0</span>];
+  <span class="kw">const</span> data = rows.slice(<span class="num">1</span>).map(row => {
+    <span class="kw">const</span> obj = {};
+    headers.forEach((h, i) => obj[h] = row[i]);
+    <span class="kw">return</span> obj;
+  });
+
+  <span class="kw">return</span> ContentService
+    .createTextOutput(JSON.stringify({ data }))
+    .setMimeType(ContentService.MimeType.JSON);
+}</pre>
+
+      <div class="note">After editing <code>doGet</code>, you must deploy a <em>new version</em> in GAS (Deploy → Manage deployments → Edit → New version) before the <code>/exec</code> URL serves the updated code. <code>clasp push</code> alone is not enough.</div>
+
+      <h3>Frontend — fetch from /exec URL</h3>
+      <pre><span class="comment">// index.js or inline script in your HTML page</span>
+<span class="kw">const</span> GAS_URL = <span class="str">"https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"</span>;
+
+<span class="kw">async function</span> <span class="fn">loadData</span>() {
+  <span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(GAS_URL);
+  <span class="kw">const</span> json = <span class="kw">await</span> res.json();
+  <span class="kw">return</span> json.data;  <span class="comment">// array of row objects</span>
+}
+
+<span class="fn">loadData</span>().then(data => {
+  <span class="comment">// render into a Chart.js chart or DOM table</span>
+  console.log(data);
+});</pre>
+
+      <div class="warn"><strong>CORS note:</strong> GAS <code>/exec</code> deployments support cross-origin requests when deployed as "Anyone" access. If you get CORS errors, check: (1) deployment access is set to "Anyone, even anonymous", (2) you're fetching the <code>/exec</code> URL not the <code>/dev</code> URL.</div>
+    </div>
+  </details>
+
+  <details class="approach-card">
+    <summary>Google Sheets published CSV <span class="approach-meta">Simplest read-only data source, no GAS needed</span></summary>
+    <div class="approach-body">
+      <p>If your Sheet is public and you only need to read it, you can skip the GAS backend entirely. Google Sheets can publish any sheet as a CSV that any client can fetch directly with no authentication.</p>
+
+      <h3>How to get the CSV URL</h3>
+      <p>In your Google Sheet: <strong>File → Share → Publish to web</strong> → select the sheet tab → choose <em>Comma-separated values (.csv)</em> → Publish. Copy the URL. It looks like:</p>
+      <pre>https://docs.google.com/spreadsheets/d/SPREADSHEET_ID/export?format=csv&amp;gid=SHEET_GID</pre>
+
+      <h3>Fetch and parse in JavaScript</h3>
+      <pre><span class="kw">const</span> CSV_URL = <span class="str">"https://docs.google.com/spreadsheets/d/.../export?format=csv&amp;gid=0"</span>;
+
+<span class="kw">async function</span> <span class="fn">loadCSV</span>() {
+  <span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(CSV_URL);
+  <span class="kw">const</span> text = <span class="kw">await</span> res.text();
+
+  <span class="comment">// simple manual parse (first row = headers)</span>
+  <span class="kw">const</span> lines = text.trim().split(<span class="str">"\n"</span>);
+  <span class="kw">const</span> headers = lines[<span class="num">0</span>].split(<span class="str">","</span>);
+  <span class="kw">const</span> data = lines.slice(<span class="num">1</span>).map(line => {
+    <span class="kw">const</span> vals = line.split(<span class="str">","</span>);
+    <span class="kw">const</span> obj = {};
+    headers.forEach((h, i) => obj[h.trim()] = vals[i]?.trim());
+    <span class="kw">return</span> obj;
+  });
+  <span class="kw">return</span> data;
+}</pre>
+
+      <div class="note">For Sheets with commas inside cells (quoted fields), the manual split above will break. Use <a href="https://www.papaparse.com/" target="_blank" style="color:#0f3460;">Papa Parse</a> instead — include it via CDN and call <code>Papa.parse(text, { header: true })</code>.</div>
+
+      <div class="warn"><strong>This only works for public Sheets.</strong> If your Sheet is private, use the GAS /exec approach or gspread with a service account instead.</div>
+    </div>
+  </details>
+
+  <!-- ── Chart.js basics ─────────────────────────────────────── -->
+  <h2>Chart.js basics</h2>
+  <p>Chart.js is the standard library for browser-based charts in the stacks on this site. Include it via CDN — no npm, no build step.</p>
+
+  <pre><span class="comment">&lt;!-- Add to your HTML &lt;head&gt; --&gt;</span>
+&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;
+
+<span class="comment">&lt;!-- Canvas element where the chart renders --&gt;</span>
+&lt;canvas id="myChart" width="600" height="300"&gt;&lt;/canvas&gt;</pre>
+
+  <h3>Minimal bar chart</h3>
+  <pre><span class="kw">const</span> ctx = document.getElementById(<span class="str">"myChart"</span>).getContext(<span class="str">"2d"</span>);
+
+<span class="kw">new</span> Chart(ctx, {
+  type: <span class="str">"bar"</span>,
+  data: {
+    labels: [<span class="str">"Jan"</span>, <span class="str">"Feb"</span>, <span class="str">"Mar"</span>, <span class="str">"Apr"</span>],
+    datasets: [{
+      label: <span class="str">"Responses"</span>,
+      data: [<span class="num">12</span>, <span class="num">19</span>, <span class="num">8</span>, <span class="num">24</span>],
+      backgroundColor: <span class="str">"#0f3460"</span>,
+    }]
+  },
+  options: {
+    responsive: <span class="kw">true</span>,
+    plugins: { legend: { display: <span class="kw">false</span> } }
+  }
+});</pre>
+
+  <h3>Building labels and data from fetched rows</h3>
+  <pre><span class="comment">// after loadData() returns an array of objects like { month: "Jan", count: "12" }</span>
+<span class="fn">loadData</span>().then(rows => {
+  <span class="kw">const</span> labels = rows.map(r => r.month);
+  <span class="kw">const</span> values = rows.map(r => parseInt(r.count));
+
+  <span class="kw">new</span> Chart(ctx, {
+    type: <span class="str">"bar"</span>,
+    data: {
+      labels,
+      datasets: [{ label: <span class="str">"Count"</span>, data: values, backgroundColor: <span class="str">"#0f3460"</span> }]
+    }
+  });
+});</pre>
+
+  <h3>Common chart types</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Type string</th><th>Use for</th></tr></thead>
+      <tbody>
+        <tr><td><code>"bar"</code></td><td>Comparing categories (counts, totals per group)</td></tr>
+        <tr><td><code>"line"</code></td><td>Trends over time</td></tr>
+        <tr><td><code>"pie"</code> / <code>"doughnut"</code></td><td>Part-to-whole breakdown (use sparingly — hard to read precisely)</td></tr>
+        <tr><td><code>"scatter"</code></td><td>Relationship between two numeric variables</td></tr>
+        <tr><td><code>"horizontalBar"</code></td><td>Long category labels (rotate bar chart with <code>indexAxis: 'y'</code>)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── Auto-refresh ────────────────────────────────────────── -->
+  <h2>Auto-refreshing data</h2>
+  <p>Auto-refresh makes sense when data changes frequently and users want to see it without reloading. For slowly-changing data (updated once a day), it just adds network load for no benefit.</p>
+
+  <h3>JavaScript — setInterval</h3>
+  <pre><span class="kw">let</span> chart = <span class="kw">null</span>;  <span class="comment">// keep a reference to update it</span>
+
+<span class="kw">async function</span> <span class="fn">refresh</span>() {
+  <span class="kw">const</span> data = <span class="kw">await</span> <span class="fn">loadData</span>();
+  <span class="kw">if</span> (chart) {
+    <span class="comment">// update existing chart in-place (no flicker)</span>
+    chart.data.labels = data.map(r => r.label);
+    chart.data.datasets[<span class="num">0</span>].data = data.map(r => r.value);
+    chart.update();
+  } <span class="kw">else</span> {
+    chart = <span class="kw">new</span> Chart(ctx, { <span class="comment">/* initial config */</span> });
+  }
+}
+
+<span class="fn">refresh</span>();                        <span class="comment">// run immediately on load</span>
+setInterval(refresh, <span class="num">30000</span>);    <span class="comment">// then every 30 seconds</span></pre>
+
+  <div class="note">Calling <code>chart.update()</code> on the existing Chart instance (instead of destroying and recreating it) gives a smooth animated update rather than a flash of blank canvas.</div>
+
+  <h3>Streamlit — time-based rerun</h3>
+  <pre><span class="kw">import</span> time
+<span class="kw">import</span> streamlit <span class="kw">as</span> st
+
+<span class="comment"># show data, then wait and reload the whole page</span>
+placeholder = st.empty()
+<span class="kw">with</span> placeholder.container():
+    st.dataframe(load_data())
+    st.caption(<span class="str">f"Refreshed at {time.strftime('%H:%M:%S')}"</span>)
+
+time.sleep(<span class="num">30</span>)
+st.rerun()</pre>
+
+  <div class="warn"><strong>When not to auto-refresh:</strong> if your data source is Google Sheets via gspread, every refresh hits the Sheets API. Google's quota is 300 read requests per minute per project — a dashboard with 10 simultaneous users refreshing every 30s will hit this. Use <code>@st.cache_data(ttl=60)</code> to serve cached data between refreshes.</div>
+
+  <!-- ── Embedding ───────────────────────────────────────────── -->
+  <h2>Embedding a dashboard in another page</h2>
+  <p>If your dashboard is a standalone HTML page (GitHub Pages or a GAS web app), you can embed it in another page using an <code>&lt;iframe&gt;</code>:</p>
+
+  <pre>&lt;iframe
+  src="https://your-dashboard-url.github.io/dashboard.html"
+  width="100%"
+  height="500"
+  frameborder="0"
+  style="border-radius: 8px;"
+&gt;&lt;/iframe&gt;</pre>
+
+  <div class="note">GAS web apps can only be embedded in iframes if the deployment's "Who has access" is set to "Anyone" (not "Anyone with Google account") <em>and</em> the embedding page is not blocked by the GAS app's <code>X-Frame-Options</code> header. In practice, embedding GAS apps in iframes can be unreliable — a standalone page with its own fetch() call is more predictable.</div>
+
+  <!-- ── AI prompts ──────────────────────────────────────────── -->
+  <h2>AI prompts for chart and dashboard code</h2>
+
+  <details class="approach-card">
+    <summary>Prompts to use</summary>
+    <div class="approach-body">
+      <h3>Chart.js from fetched data</h3>
+      <pre>I have a JavaScript function that returns an array of objects like:
+[{ label: "Frosh", count: 12 }, { label: "Senior", count: 8 }, ...]
+
+Write the Chart.js code to render a bar chart with those labels and counts.
+Use Chart.js loaded from CDN. Include the canvas element and the script.
+Color bars with #0f3460. Make it responsive.</pre>
+
+      <h3>GAS JSON endpoint</h3>
+      <pre>Write a Google Apps Script doGet() function that:
+1. Opens a spreadsheet by ID (I'll fill in the ID)
+2. Gets all rows from a sheet named "Data"
+3. Returns them as a JSON array of objects, using the first row as headers
+4. Sets the MIME type so browsers don't download it as a file
+
+Also write the frontend fetch() call that loads this endpoint and logs the data.</pre>
+
+      <h3>Streamlit Plotly dashboard</h3>
+      <pre>I have a pandas DataFrame called `df` with columns: name (str), score (int), group (str).
+Write a Streamlit page that shows:
+- Three st.metric tiles: total rows, average score, number of unique groups
+- A Plotly bar chart of average score per group
+- A st.dataframe of the full table with a text search filter above it</pre>
+
+      <h3>Auto-refresh with cache</h3>
+      <pre>I have a Streamlit app that reads from Google Sheets using gspread.
+I want the page to auto-refresh every 60 seconds but only hit the Sheets API
+once per minute even if multiple users are viewing it.
+Show me how to use @st.cache_data with a TTL and st.rerun() to achieve this.</pre>
+    </div>
+  </details>
+
 </main>
 
 <footer>

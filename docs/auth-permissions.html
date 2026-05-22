@@ -20,27 +20,50 @@
     .nav-dropdown:hover .nav-dropdown-menu { display: block; }
     .nav-dropdown-menu a { display: block; padding: 0.45rem 1rem; border-radius: 0; white-space: nowrap; }
     .nav-dropdown-menu a:hover { background: #16213e; }
+
     main { max-width: 860px; margin: 2.5rem auto; padding: 0 1.5rem; }
-    section { margin-bottom: 2.5rem; }
-    h2 { font-size: 1.4rem; margin-bottom: 1rem; border-left: 4px solid #0f3460; padding-left: 0.6rem; }
-    h3 { font-size: 1.05rem; margin: 1.3rem 0 0.5rem; color: #0f3460; }
     p { line-height: 1.7; margin-bottom: 0.6rem; }
-    .coming-soon {
-      background: white;
-      border-radius: 10px;
-      padding: 3rem 2rem;
-      text-align: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-      margin-top: 1rem;
-    }
-    .coming-soon .icon { font-size: 3rem; margin-bottom: 1rem; }
-    .coming-soon h2 { border: none; padding: 0; font-size: 1.4rem; text-align: center; margin-bottom: 0.6rem; }
-    .coming-soon p { color: #666; max-width: 480px; margin: 0 auto 1.5rem; }
-    .topic-list { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 1rem; }
-    .topic-list li { background: #e8ecf0; border-radius: 20px; padding: 0.3rem 0.9rem; font-size: 0.88rem; color: #444; }
-    .btn { display: inline-block; background: #0f3460; color: white; padding: 0.6rem 1.4rem; border-radius: 5px; text-decoration: none; font-size: 0.93rem; transition: background 0.2s; }
-    .btn:hover { background: #16213e; }
-    footer { text-align: center; padding: 1.5rem; font-size: 0.85rem; color: #888; margin-top: 2rem; }
+    h2 { font-size: 1.2rem; font-weight: 700; margin: 2.5rem 0 0.6rem; color: #1a1a2e; }
+    h3 { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.4rem; color: #0f3460; }
+
+    /* Pattern cards */
+    .pattern-card { background: white; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); margin-bottom: 0.8rem; overflow: hidden; }
+    .pattern-card summary { padding: 0.9rem 1.3rem; font-size: 1rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .pattern-card summary::-webkit-details-marker { display: none; }
+    .pattern-card summary::after { content: '▸'; font-size: 0.85rem; color: #888; margin-left: 0.5rem; }
+    .pattern-card[open] summary::after { content: '▾'; }
+    .pattern-card summary:hover { background: #f8f9fa; }
+    .pattern-body { padding: 0.2rem 1.3rem 1.3rem; }
+    .pattern-meta { font-size: 0.82rem; color: #777; font-weight: 400; margin-left: 0.8rem; }
+
+    /* Code blocks */
+    pre { background: #1e1e2e; color: #cdd6f4; border-radius: 8px; padding: 1rem 1.2rem; overflow-x: auto; font-size: 0.83rem; line-height: 1.65; margin: 0.8rem 0; font-family: 'Consolas', 'Courier New', monospace; }
+    code { background: #eef; border-radius: 3px; padding: 0.1em 0.35em; font-size: 0.88em; font-family: 'Consolas', monospace; }
+    pre code { background: none; padding: 0; font-size: inherit; color: inherit; }
+    .comment { color: #6c7086; }
+    .str { color: #a6e3a1; }
+    .kw { color: #89b4fa; }
+    .fn { color: #cba6f7; }
+
+    /* Tables */
+    .table-wrap { overflow-x: auto; margin-bottom: 1rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+    th { background: #1a1a2e; color: white; padding: 0.6rem 1rem; text-align: left; }
+    td { padding: 0.55rem 1rem; border-bottom: 1px solid #eee; vertical-align: top; line-height: 1.55; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8f9fa; }
+
+    /* Callouts */
+    .note { background: #f0f4ff; border-left: 3px solid #0f3460; padding: 0.65rem 1rem; border-radius: 0 6px 6px 0; margin: 0.8rem 0; font-size: 0.9rem; line-height: 1.7; }
+    .warn { background: #fff8e6; border-left: 3px solid #d97706; padding: 0.65rem 1rem; border-radius: 0 6px 6px 0; margin: 0.8rem 0; font-size: 0.9rem; line-height: 1.7; }
+    .warn strong { color: #92400e; }
+
+    /* Steps */
+    .steps { counter-reset: step; margin: 0.8rem 0 0; }
+    .step { counter-increment: step; display: flex; gap: 0.9rem; margin-bottom: 0.8rem; font-size: 0.9rem; line-height: 1.6; }
+    .step::before { content: counter(step); background: #0f3460; color: white; font-size: 0.75rem; font-weight: 700; min-width: 1.4rem; height: 1.4rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; }
+
+    footer { text-align: center; padding: 1.5rem; font-size: 0.85rem; color: #888; margin-top: 3rem; }
     footer a { color: #888; }
   </style>
 </head>
@@ -74,26 +97,240 @@
     </div>
   </div>
   <a href="feedback.html">Suggest or Improve</a>
-  <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">← Back to Basics</a>
+  <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">&#8592; Back to Basics</a>
   <a href="https://github.com/jbain-ANDREW/Build-With-AI" target="_blank">GitHub Repo</a>
 </nav>
 
 <main>
-  <div class="coming-soon">
-    <div class="icon">🔑</div>
-    <h2>Coming Soon</h2>
-    <p>This section is under development. It will cover the following topics:</p>
-    <ul class="topic-list">
-      <li>OAuth 2.0 flows</li>
-      <li>API keys — safe storage</li>
-      <li>Google service accounts</li>
-      <li>.env files and secrets</li>
-      <li>Scopes and least-privilege</li>
-      <li>AI prompts for auth code</li>
-    </ul>
-    <br>
-    <a href="index.html" class="btn">← Back to Home</a>
+
+  <p style="margin-bottom:1.5rem;">Auth is the biggest source of friction when building real apps. The question is almost never "how do I implement OAuth?" and almost always "which pattern fits my situation and what's the minimum I need to configure?" This page covers the four patterns that appear across the stacks on this site, plus how to store credentials safely in each one.</p>
+
+  <!-- ── Pattern picker ──────────────────────────────────────── -->
+  <h2>Which pattern fits your situation?</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Your situation</th><th>Pattern</th><th>Stack</th></tr></thead>
+      <tbody>
+        <tr><td>Local tool, single user, no sharing needed</td><td>No auth</td><td>Streamlit + SQLite, Flask local</td></tr>
+        <tr><td>Calling an external REST API (weather, maps, etc.)</td><td>API key</td><td>Any</td></tr>
+        <tr><td>Reading/writing Google Sheets from a script or server</td><td>Google service account</td><td>Streamlit + Sheets, GAS</td></tr>
+        <tr><td>Users log in with their Google account, you control who</td><td>OAuth 2.0 (user-facing)</td><td>Streamlit Cloud, Firebase Auth</td></tr>
+      </tbody>
+    </table>
   </div>
+
+  <!-- ── Patterns ────────────────────────────────────────────── -->
+  <h2>Patterns</h2>
+
+  <details class="pattern-card">
+    <summary>No auth <span class="pattern-meta">Local tools — deliberate, not lazy</span></summary>
+    <div class="pattern-body">
+      <p>For tools that run locally and have a single user (you), auth is not a shortcut you're skipping — it's a feature you don't need. Streamlit + SQLite and local Flask apps are both in this category. The tool runs on <code>localhost</code>, access is controlled by who can open the terminal.</p>
+      <p>The risk surface is: accidental exposure via a shared machine, tunneling, or cloud deployment. If you later deploy a local tool publicly, add auth before you deploy — not after.</p>
+      <div class="note">If you share your screen or use VS Code Live Share, anyone watching can see and interact with your local app. No localhost is truly private in a screen-share session.</div>
+    </div>
+  </details>
+
+  <details class="pattern-card">
+    <summary>API keys <span class="pattern-meta">Calling external services</span></summary>
+    <div class="pattern-body">
+      <p>An API key is a long string that proves your code is authorized to call a third-party service. You put it in a request header or query parameter. The key itself is a secret — treat it like a password.</p>
+
+      <h3>Where to store keys — by stack</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Stack</th><th>Store in</th><th>Access in code</th></tr></thead>
+          <tbody>
+            <tr><td>Streamlit (local)</td><td><code>.streamlit/secrets.toml</code></td><td><code>st.secrets["MY_KEY"]</code></td></tr>
+            <tr><td>Streamlit Cloud</td><td>App settings → Secrets panel</td><td><code>st.secrets["MY_KEY"]</code> (same code)</td></tr>
+            <tr><td>Flask / Python (local)</td><td><code>.env</code> file</td><td><code>os.getenv("MY_KEY")</code></td></tr>
+            <tr><td>React / Vite</td><td><code>.env.local</code> file</td><td><code>import.meta.env.VITE_MY_KEY</code></td></tr>
+            <tr><td>Google Apps Script</td><td>Script Properties (Project Settings)</td><td><code>PropertiesService.getScriptProperties().getProperty("MY_KEY")</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>secrets.toml (Streamlit)</h3>
+      <pre><span class="comment"># .streamlit/secrets.toml  ← git-ignored, never committed</span>
+MY_API_KEY = <span class="str">"sk-abc123..."</span>
+DATABASE_URL = <span class="str">"postgresql://..."</span></pre>
+
+      <h3>.env file (Flask / Python)</h3>
+      <pre><span class="comment"># .env  ← git-ignored, never committed</span>
+MY_API_KEY=sk-abc123...
+DATABASE_URL=postgresql://...</pre>
+<pre><span class="comment"># in Python, load with python-dotenv:</span>
+<span class="kw">from</span> dotenv <span class="kw">import</span> load_dotenv
+<span class="kw">import</span> os
+load_dotenv()
+key = os.getenv(<span class="str">"MY_API_KEY"</span>)</pre>
+
+      <div class="warn"><strong>Never hardcode keys in source files.</strong> Even in private repos — they show up in git history, pull request diffs, and search results. If you accidentally commit a key, rotate it immediately and treat it as compromised.</div>
+
+      <h3>What to add to .gitignore</h3>
+      <pre>.env
+.env.local
+.streamlit/secrets.toml
+service_account.json
+*_credentials.json</pre>
+    </div>
+  </details>
+
+  <details class="pattern-card">
+    <summary>Google service accounts <span class="pattern-meta">Server-to-server access to Sheets, Drive, Gmail</span></summary>
+    <div class="pattern-body">
+      <p>A service account is a non-human Google account your code logs in as. It has its own email address (e.g. <code>myapp@myproject.iam.gserviceaccount.com</code>) and its own credentials JSON file. Use this when your code needs to read or write Google Sheets, Drive, or other Google Workspace resources without a human logging in each time.</p>
+
+      <h3>Setup steps</h3>
+      <div class="steps">
+        <div class="step">Go to <strong>Google Cloud Console</strong> → select or create a project.</div>
+        <div class="step">Enable the APIs you need: <em>Google Sheets API</em>, <em>Google Drive API</em>, etc. (APIs &amp; Services → Library).</div>
+        <div class="step">Create a service account: IAM &amp; Admin → Service Accounts → Create. Give it a name.</div>
+        <div class="step">Create a JSON key: click the service account → Keys tab → Add Key → JSON. This downloads a file — keep it safe.</div>
+        <div class="step">Share the relevant Google Sheet (or Drive folder) with the service account email address, just like sharing with a person. Give it Editor access if it needs to write.</div>
+        <div class="step">In your code, authenticate using the JSON key. Never commit the file — store it in <code>.gitignore</code> and reference the path via an env var.</div>
+      </div>
+
+      <h3>Using gspread in Python (Streamlit + Sheets)</h3>
+      <pre><span class="kw">import</span> gspread
+<span class="kw">from</span> google.oauth2.service_account <span class="kw">import</span> Credentials
+
+<span class="comment"># scopes define exactly what the service account can do</span>
+SCOPES = [
+    <span class="str">"https://www.googleapis.com/auth/spreadsheets"</span>,
+    <span class="str">"https://www.googleapis.com/auth/drive.readonly"</span>,
+]
+
+creds = Credentials.from_service_account_file(
+    <span class="str">"service_account.json"</span>, scopes=SCOPES
+)
+client = gspread.authorize(creds)
+sheet = client.open(<span class="str">"My Sheet Name"</span>).sheet1
+data = sheet.get_all_records()</pre>
+
+      <h3>On Streamlit Cloud — use secrets instead of a file</h3>
+      <pre><span class="comment"># secrets.toml — paste the full JSON content as a TOML block</span>
+[gcp_service_account]
+type = <span class="str">"service_account"</span>
+project_id = <span class="str">"my-project"</span>
+private_key_id = <span class="str">"abc123"</span>
+private_key = <span class="str">"-----BEGIN RSA PRIVATE KEY-----\n..."</span>
+client_email = <span class="str">"myapp@my-project.iam.gserviceaccount.com"</span>
+<span class="comment"># ... rest of JSON fields</span></pre>
+<pre><span class="comment"># in Python, read from st.secrets directly</span>
+creds = Credentials.from_service_account_info(
+    st.secrets[<span class="str">"gcp_service_account"</span>], scopes=SCOPES
+)</pre>
+
+      <div class="note">The most common mistake: forgetting to share the Sheet with the service account email. The code will authenticate fine but throw a <code>SpreadsheetNotFound</code> or permission error when it tries to open the file.</div>
+    </div>
+  </details>
+
+  <details class="pattern-card">
+    <summary>Google OAuth (user-facing login) <span class="pattern-meta">Users sign in with their Google account</span></summary>
+    <div class="pattern-body">
+      <p>User-facing OAuth means your app asks the user to sign in with their Google account. You get a token proving who they are, then decide whether they're allowed to use the app. Two variants appear across the stacks:</p>
+
+      <h3>Variant A — Firebase Auth (React apps)</h3>
+      <p>Firebase Auth wraps the OAuth flow entirely. You call <code>signInWithPopup</code>, Firebase handles the redirect, and you get back a user object with their email and display name. No backend code needed.</p>
+      <pre><span class="kw">import</span> { getAuth, signInWithPopup, GoogleAuthProvider } <span class="kw">from</span> <span class="str">"firebase/auth"</span>
+
+<span class="kw">const</span> auth = getAuth()
+<span class="kw">const</span> provider = <span class="kw">new</span> <span class="fn">GoogleAuthProvider</span>()
+
+<span class="kw">async function</span> <span class="fn">login</span>() {
+  <span class="kw">const</span> result = <span class="kw">await</span> <span class="fn">signInWithPopup</span>(auth, provider)
+  <span class="kw">const</span> email = result.user.email
+  <span class="comment">// check against your allowedEmails list</span>
+}</pre>
+
+      <p>Authorization (who is <em>allowed</em> in, not just who they are) is typically handled by an <code>allowedEmails</code> array in a <code>config.json</code> file plus Firestore Security Rules that reject writes from unlisted users.</p>
+
+      <pre><span class="comment">// firestore.rules — only allow reads/writes from known emails</span>
+rules_version = <span class="str">'2'</span>;
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null
+        &amp;&amp; request.auth.token.email in [
+          <span class="str">"you@example.com"</span>,
+          <span class="str">"collaborator@example.com"</span>
+        ];
+    }
+  }
+}</pre>
+
+      <h3>Variant B — Streamlit + gspread OAuth</h3>
+      <p>Streamlit Community Cloud can handle Google login via its built-in <code>st.user</code> object when you configure OAuth in the app settings. The user's email is available at <code>st.user.email</code>. Combine this with a role dict to control access per email.</p>
+      <pre><span class="comment"># roles.py — simple email → role mapping</span>
+ROLES = {
+    <span class="str">"faculty@university.edu"</span>: <span class="str">"admin"</span>,
+    <span class="str">"student@university.edu"</span>: <span class="str">"viewer"</span>,
+}
+
+<span class="kw">def</span> <span class="fn">get_role</span>(email: str) -> str:
+    <span class="kw">return</span> ROLES.get(email, <span class="str">"none"</span>)</pre>
+
+      <div class="note">On Streamlit Community Cloud (free tier), OAuth requires your app to be <em>set to Private</em> in the sharing settings. A public app with no viewer restriction won't trigger the login screen even if your code checks <code>st.user</code>.</div>
+    </div>
+  </details>
+
+  <!-- ── Scopes ──────────────────────────────────────────────── -->
+  <h2>Scopes and least-privilege</h2>
+  <p>A scope is a declaration of what your app is allowed to do. Requesting a broader scope than you need creates unnecessary risk — if your credentials are ever exposed, the blast radius is larger. Always request the minimum scope that lets your app function.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Task</th><th>Scope to request</th><th>Don't use</th></tr></thead>
+      <tbody>
+        <tr><td>Read a Google Sheet</td><td><code>spreadsheets.readonly</code></td><td><code>spreadsheets</code> (allows writes)</td></tr>
+        <tr><td>Read and write a Google Sheet</td><td><code>spreadsheets</code></td><td><code>drive</code> (gives access to all files)</td></tr>
+        <tr><td>List files in a specific Drive folder</td><td><code>drive.readonly</code></td><td><code>drive</code> (allows deletes)</td></tr>
+        <tr><td>Send email via Gmail API</td><td><code>gmail.send</code></td><td><code>gmail.modify</code> or <code>mail.google.com</code></td></tr>
+        <tr><td>Read Gmail labels/inbox</td><td><code>gmail.readonly</code></td><td><code>gmail.modify</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">Google scopes are additive — you can always add more later by re-running the OAuth flow. Start narrow and expand only when the code actually needs it.</div>
+
+  <!-- ── AI prompts ──────────────────────────────────────────── -->
+  <h2>AI prompts for auth code</h2>
+  <p>Auth code is an area where AI assistance is particularly useful — the patterns are well-established but the wiring details (how to load a secret in <em>this specific stack</em>, which exception to catch, which scope string to use) are tedious to look up. These prompts work well with Claude Code:</p>
+
+  <details class="pattern-card">
+    <summary>Prompts to use</summary>
+    <div class="pattern-body">
+      <h3>Service account setup</h3>
+      <pre>I'm building a Python Streamlit app that reads from Google Sheets using gspread.
+I have a service account JSON file locally. Show me:
+1. How to load it locally from a file path stored in an env var
+2. How to load the same credentials from st.secrets when deployed to Streamlit Cloud
+3. The exact scopes to request for read-only Sheets access
+4. What .gitignore entries I need</pre>
+
+      <h3>Firebase Auth + allowedEmails</h3>
+      <pre>I have a React + Firebase app. I want users to sign in with Google OAuth
+and be rejected unless their email is in an allowedEmails array in config.json.
+Show me:
+1. The sign-in function using signInWithPopup
+2. How to check the email against the allowedEmails list after login
+3. Firestore security rules that enforce the same check server-side
+4. How to sign out</pre>
+
+      <h3>Scopes audit</h3>
+      <pre>Here is my Python code that uses the Google API. Review the OAuth scopes I'm requesting
+and tell me if any are broader than necessary for what the code actually does.
+Suggest the minimum scopes needed.
+[paste your code]</pre>
+
+      <h3>Secrets migration</h3>
+      <pre>I have a Python script that currently has API keys hardcoded as variables.
+Show me how to move them to a .env file using python-dotenv so the script
+reads them from environment variables instead. Show the .env file, the
+.gitignore entry, and the updated Python code.</pre>
+    </div>
+  </details>
+
 </main>
 
 <footer>
