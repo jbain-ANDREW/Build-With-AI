@@ -11,6 +11,7 @@ Advanced topics for vibe coders — auth flows, dashboards, and tech stacks, bui
 - **Auth & Permissions** — OAuth, API keys, service accounts, secrets management
 - **Dashboards** — Google Sheets as a data source, Charts.js, auto-refreshing views
 - **Tech Stacks** — choosing the right combination of tools for your project
+- **Foundation Models & Agents** — what foundation models, prompts, RAG, agents, and MCP are, how they differ, and how they fit together, plus a living Foundation Model Comparison reference
 
 ## Setup
 

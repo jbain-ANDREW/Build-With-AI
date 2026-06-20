@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foundation Models &amp; Agents | Build With AI</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f6f9; color: #222; }
+    header { background: #1a1a2e; color: white; padding: 2.5rem 2rem; text-align: center; }
+    header h1 { font-size: 2rem; margin-bottom: 0.4rem; }
+    header p { opacity: 0.75; font-size: 1.05rem; }
+    nav { display: flex; justify-content: center; gap: 1rem; background: #16213e; padding: 0.75rem; flex-wrap: wrap; }
+    nav a { color: #e0e0e0; text-decoration: none; font-size: 0.95rem; padding: 0.3rem 0.8rem; border-radius: 4px; transition: background 0.2s; }
+    nav a:hover { background: #0f3460; }
+    .nav-dropdown { position: relative; display: inline-block; }
+    .nav-dropdown > span { color: #e0e0e0; font-size: 0.95rem; padding: 0.3rem 0.8rem; border-radius: 4px; cursor: pointer; user-select: none; display: inline-block; }
+    .nav-dropdown > span:hover { background: #0f3460; }
+    .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #0f3460; border-radius: 4px; min-width: 200px; z-index: 100; padding: 0.3rem 0; }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a { display: block; padding: 0.45rem 1rem; border-radius: 0; white-space: nowrap; }
+    .nav-dropdown-menu a:hover { background: #16213e; }
+    main { max-width: 860px; margin: 2.5rem auto; padding: 0 1.5rem; }
+    p { line-height: 1.7; margin-bottom: 0.6rem; }
+    h2 { font-size: 1.25rem; font-weight: 600; margin: 2rem 0 0.8rem; color: #1a1a2e; }
+
+    /* Concept cards (same pattern as tech-stacks.html stack-card) */
+    .stack-card { background: white; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); margin-bottom: 0.8rem; overflow: hidden; }
+    .stack-card summary { padding: 1rem 1.4rem; font-size: 1.05rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .stack-card summary::-webkit-details-marker { display: none; }
+    .stack-card summary::after { content: '▸'; font-size: 0.85rem; color: #888; margin-left: 0.5rem; }
+    .stack-card[open] summary::after { content: '▾'; }
+    .stack-card summary:hover { background: #f8f9fa; }
+    .stack-card-body { padding: 0.2rem 1.4rem 1.4rem; }
+    .stack-meta { font-size: 0.82rem; color: #777; font-weight: 400; margin-left: 0.8rem; }
+    .stack-note { font-size: 0.88rem; color: #666; font-style: italic; margin: 0.5rem 0 0.8rem; }
+    .col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 0.8rem 0; }
+    @media (max-width: 600px) { .col-2 { grid-template-columns: 1fr; } }
+    .col-2 h4 { font-size: 0.88rem; text-transform: uppercase; letter-spacing: 0.04em; color: #555; margin-bottom: 0.4rem; }
+    .col-2 ul { margin-left: 1.1rem; font-size: 0.9rem; line-height: 1.85; color: #444; }
+    .when-to-use { background: #fff7ed; border-left: 3px solid #d97706; padding: 0.65rem 1rem; border-radius: 0 6px 6px 0; margin-top: 0.8rem; font-size: 0.9rem; line-height: 1.7; }
+    .when-to-use strong { color: #d97706; }
+
+    /* Recap strip */
+    .recap { background: #1a1a2e; color: white; border-radius: 10px; padding: 1.5rem 1.8rem; margin: 2rem 0; }
+    .recap h2 { color: white; margin-top: 0; }
+    .recap-chain { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.8rem; }
+    .recap-step { background: rgba(255,255,255,0.1); border-radius: 6px; padding: 0.5rem 0.9rem; font-size: 0.88rem; }
+    .recap-step strong { display: block; font-size: 0.92rem; }
+    .recap-step span { opacity: 0.7; font-size: 0.8rem; }
+    .recap-arrow { opacity: 0.4; }
+
+    /* Guide cards */
+    .guide-card { background: white; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); padding: 1.4rem 1.8rem; margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1.2rem; }
+    .guide-card .icon { font-size: 2rem; flex-shrink: 0; }
+    .guide-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .guide-card h3 a { color: #d97706; text-decoration: none; }
+    .guide-card p { color: #555; font-size: 0.92rem; line-height: 1.6; margin: 0; }
+    .guide-card .btn { display: inline-block; margin-top: 0.6rem; background: #d97706; color: white; padding: 0.4rem 1rem; border-radius: 4px; font-size: 0.88rem; text-decoration: none; transition: background 0.2s; }
+    .guide-card .btn:hover { background: #b45309; }
+
+    code { background: #eef; border-radius: 3px; padding: 0.1em 0.35em; font-size: 0.88em; font-family: 'Consolas', monospace; }
+
+    footer { text-align: center; padding: 1.5rem; font-size: 0.85rem; color: #888; margin-top: 2rem; }
+    footer a { color: #888; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Foundation Models &amp; Agents</h1>
+  <p>What's actually happening under the hood when you talk to an AI tool</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <div class="nav-dropdown">
+    <span>Auth &amp; Permissions &#9662;</span>
+    <div class="nav-dropdown-menu">
+      <a href="auth-permissions.html">Overview</a>
+    </div>
+  </div>
+  <div class="nav-dropdown">
+    <span>Dashboards &#9662;</span>
+    <div class="nav-dropdown-menu">
+      <a href="dashboards.html">Overview</a>
+    </div>
+  </div>
+  <div class="nav-dropdown">
+    <span>Tech Stacks &#9662;</span>
+    <div class="nav-dropdown-menu">
+      <a href="tech-stacks.html">Overview</a>
+      <a href="stack-comparison.html">Stack Comparison</a>
+      <a href="latex-overleaf.html">LaTeX + Overleaf</a>
+    </div>
+  </div>
+  <div class="nav-dropdown">
+    <span>Foundation Models &amp; Agents &#9662;</span>
+    <div class="nav-dropdown-menu">
+      <a href="foundation-models-agents.html">Overview</a>
+      <a href="model-comparison.html">Model Comparison</a>
+    </div>
+  </div>
+  <a href="feedback.html">Suggest or Improve</a>
+  <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">&#8592; Back to Basics</a>
+  <a href="https://github.com/jbain-ANDREW/Build-With-AI" target="_blank">GitHub Repo</a>
+</nav>
+
+<main>
+  <section>
+    <p style="margin-bottom:1.5rem;">"AI" is not one thing — it's a stack of distinct layers, each solving a different problem. Knowing which layer you're actually working with (or need) saves you from over-building (writing agent code when a better prompt would do) or under-building (expecting a plain prompt to know things it can't possibly know). The five cards below go from the most basic layer to the most capable, in order. Click any to expand it.</p>
+
+    <!-- ── Concept cards ─────────────────────────────────────────── -->
+
+    <details class="stack-card" open>
+      <summary>Foundation Models <span class="stack-meta">The base layer — the "brain" itself</span></summary>
+      <div class="stack-card-body">
+        <p class="stack-note">A foundation model is a large model trained once on a broad swath of data (text, code, sometimes images/audio) and then reused as the base for many different tasks, instead of training a new model from scratch for each one.</p>
+        <div class="col-2">
+          <div>
+            <h4>Examples</h4>
+            <ul>
+              <li>Claude (Anthropic)</li>
+              <li>GPT (OpenAI)</li>
+              <li>Gemini (Google)</li>
+              <li>Llama (Meta) — open-weight</li>
+              <li>Mistral — open-weight</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Properties that matter when choosing one</h4>
+            <ul>
+              <li><strong>Context window</strong> — how much text it can consider at once</li>
+              <li><strong>Modality</strong> — text-only vs. vision/audio/code-aware</li>
+              <li><strong>Open-weight vs. API-only</strong> — can you run it yourself?</li>
+              <li><strong>Cost</strong> — price per token in, per token out</li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top:0.8rem;">Everything else on this page — prompts, RAG, agents, MCP — is built <em>on top of</em> a foundation model. None of them work without one underneath.</p>
+        <div class="when-to-use">
+          <strong>Use this layer when:</strong> you're deciding which AI "brain" powers your app or feature. See the <a href="model-comparison.html" style="color:#d97706;">Model Comparison</a> page for current options and pricing.
+        </div>
+      </div>
+    </details>
+
+    <details class="stack-card">
+      <summary>Prompts <span class="stack-meta">The only interface you have</span></summary>
+      <div class="stack-card-body">
+        <p class="stack-note">A prompt is the text you send the model. It is the <em>entire</em> interface — there is no other dial, button, or setting that changes what the model does on a given request besides what you put in the prompt (and a few API parameters like temperature).</p>
+        <div class="col-2">
+          <div>
+            <h4>Common techniques</h4>
+            <ul>
+              <li><strong>System prompt</strong> — standing instructions for the whole conversation</li>
+              <li><strong>Zero-shot</strong> — just ask, no examples</li>
+              <li><strong>Few-shot</strong> — show 1-3 examples of the output you want</li>
+              <li><strong>Chain-of-thought</strong> — ask it to reason step by step before answering</li>
+              <li><strong>Structured output</strong> — ask for JSON matching a schema</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Common misconception</h4>
+            <ul>
+              <li>A better prompt cannot teach the model a fact it was never trained on</li>
+              <li>Prompting <em>elicits</em> capability already in the model — it doesn't add new capability</li>
+              <li>If the model needs outside facts, that's RAG (next card), not a cleverer prompt</li>
+            </ul>
+          </div>
+        </div>
+        <div class="when-to-use">
+          <strong>Use this layer when:</strong> starting any AI feature. It's free, instant, and fully reversible — always try a better prompt before reaching for RAG or an agent.
+        </div>
+      </div>
+    </details>
+
+    <details class="stack-card">
+      <summary>RAG <span class="stack-meta">Retrieval-Augmented Generation — giving it facts it doesn't know</span></summary>
+      <div class="stack-card-body">
+        <p class="stack-note">A foundation model only knows what was in its training data, frozen at a cutoff date. RAG fixes that by fetching relevant outside information at the moment of the request and inserting it into the prompt — so the model answers using facts it was never trained on.</p>
+        <div class="col-2">
+          <div>
+            <h4>The pipeline, in plain language</h4>
+            <ul>
+              <li>Break your documents into chunks</li>
+              <li>Convert each chunk into a vector (an "embedding") and store it</li>
+              <li>When a question comes in, convert it to a vector too</li>
+              <li>Retrieve the most similar stored chunks</li>
+              <li>Paste those chunks into the prompt, then ask the model to answer</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Good fits</h4>
+            <ul>
+              <li>Answering questions about your own documents or codebase</li>
+              <li>Anything that changed after the model's training cutoff</li>
+              <li>Private data the model could never have been trained on</li>
+            </ul>
+          </div>
+        </div>
+        <div class="when-to-use">
+          <strong>Use this layer when:</strong> the answer depends on information the model can't possibly already know — your files, your data, today's news.
+        </div>
+      </div>
+    </details>
+
+    <details class="stack-card">
+      <summary>Agents <span class="stack-meta">From one answer to a loop of actions</span></summary>
+      <div class="stack-card-body">
+        <p class="stack-note">A plain prompt is one request, one response. An agent changes the shape entirely: the model plans a step, takes an action (run code, call a tool, search the web, edit a file), looks at what happened, and decides the next step — repeating until the goal is done or it gives up.</p>
+        <div class="col-2">
+          <div>
+            <h4>The shift</h4>
+            <ul>
+              <li>Single-shot: "What's the capital of France?" → one answer</li>
+              <li>Agentic: "Fix the failing test" → reads files, runs the test, edits code, reruns, repeats</li>
+              <li>Agents typically combine prompting, tool use, and often RAG, in a loop</li>
+            </ul>
+          </div>
+          <div>
+            <h4>A concrete example</h4>
+            <ul>
+              <li>Claude Code (what's running this conversation) is an agent: it reads your files, runs shell commands, edits code, and iterates based on what it observes</li>
+              <li>A support bot that looks up an order, decides a refund is warranted, and issues it is also an agent</li>
+            </ul>
+          </div>
+        </div>
+        <div class="when-to-use">
+          <strong>Use this layer when:</strong> the task needs multiple steps, real-world actions, or decisions made along the way — not just a single answer.
+        </div>
+      </div>
+    </details>
+
+    <details class="stack-card">
+      <summary>MCP <span class="stack-meta">Model Context Protocol — the standard wiring for tools</span></summary>
+      <div class="stack-card-body">
+        <p class="stack-note">Once you have an agent, it needs to call tools — a database, a file system, a Slack workspace, a calendar. Without a standard, every tool needs custom integration code for every model. MCP (created by Anthropic, now widely adopted) is an open protocol so any MCP-compatible agent can talk to any MCP-compatible tool without bespoke glue code in between — "USB-C for AI," one connector instead of a different cable for every device.</p>
+        <div class="col-2">
+          <div>
+            <h4>What MCP standardizes</h4>
+            <ul>
+              <li>How an agent discovers what tools/data a server offers</li>
+              <li>How it calls a tool and gets results back</li>
+              <li>How it reads from a data source the server exposes</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Why it matters</h4>
+            <ul>
+              <li>Build one MCP server for your tool, and every MCP-compatible agent can use it</li>
+              <li>No more "N tools × M models" worth of custom integration code</li>
+              <li>This is the plumbing layer underneath the tool calls an agent makes</li>
+            </ul>
+          </div>
+        </div>
+        <div class="when-to-use">
+          <strong>Use this layer when:</strong> you're building or connecting a tool, database, or data source that an agent should be able to call.
+        </div>
+      </div>
+    </details>
+
+    <!-- ── Recap ───────────────────────────────────────────────── -->
+
+    <div class="recap">
+      <h2>How they stack together</h2>
+      <p style="opacity:0.85;">Each layer below builds on the one before it. You don't have to use all five — most features only need the first one or two.</p>
+      <div class="recap-chain">
+        <div class="recap-step"><strong>Foundation Model</strong><span>the brain</span></div>
+        <div class="recap-arrow">&#8594;</div>
+        <div class="recap-step"><strong>Prompts</strong><span>how you talk to it</span></div>
+        <div class="recap-arrow">&#8594;</div>
+        <div class="recap-step"><strong>RAG</strong><span>facts it doesn't know</span></div>
+        <div class="recap-arrow">&#8594;</div>
+        <div class="recap-step"><strong>Agents</strong><span>act in a loop</span></div>
+        <div class="recap-arrow">&#8594;</div>
+        <div class="recap-step"><strong>MCP</strong><span>standard tool wiring</span></div>
+      </div>
+    </div>
+
+    <!-- ── Guide cards ─────────────────────────────────────────── -->
+
+    <h2>Reference</h2>
+
+    <div class="guide-card">
+      <div class="icon">&#129504;</div>
+      <div>
+        <h3><a href="model-comparison.html">Foundation Model Comparison</a></h3>
+        <p>A living, hand-maintained reference of current foundation models by provider, context window, relative capability tier, and price per token. Check here before picking a model for a project.</p>
+        <a href="model-comparison.html" class="btn">View comparison &#8594;</a>
+      </div>
+    </div>
+
+  </section>
+</main>
+
+<footer>
+  <p>Build With AI &mdash; <a href="feedback.html">Suggest or Improve</a> &mdash; <a href="https://jbain-ANDREW.github.io/Training-Repo/" target="_blank">Back to intro primer</a></p>
+</footer>
+
+</body>
+</html>
